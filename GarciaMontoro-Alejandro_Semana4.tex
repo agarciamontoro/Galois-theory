@@ -1,0 +1,125 @@
+\documentclass[a4paper, 11pt]{article}
+
+%Comandos para configurar el idioma
+\usepackage[spanish,activeacute]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} %Necesario para el uso de las comillas latinas.
+
+\usepackage{hyperref}
+\hypersetup{
+  pdftitle={Semana 4},
+  pdfauthor={Alejandro García Montoro},
+  unicode,
+  plainpages=false,
+  colorlinks,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  urlcolor=black,
+}
+
+%Paquetes matemáticos
+\usepackage{amsmath,amsfonts,amsthm}
+\usepackage[all]{xy} %Para diagramas
+\usepackage{graphicx} %Inclusion imagenes
+\usepackage{enumerate} %Personalización de enumeraciones
+\usepackage{mathtools} %Para \coloneqq
+\usepackage{tikz} %Dibujos
+\usetikzlibrary{positioning} %Distancias y posicionamiento en tikz
+
+%Tipografía escalable
+\usepackage{lmodern}
+%Legibilidad
+\usepackage{microtype}
+
+\title{Álgebra III \\ Semana 4}
+\author{Alejandro García Montoro\\
+    \href{mailto:agarciamontoro@correo.ugr.es}{agarciamontoro@correo.ugr.es}}
+\date{\today}
+
+\newtheorem{ejercicio}{Ejercicio}
+\theoremstyle{definition}
+\newtheorem*{solucion}{Solución}
+\theoremstyle{remark}
+\newtheorem{apartado}{Apartado}[ejercicio]
+
+\begin{document}
+
+  \maketitle
+
+  \begin{ejercicio}
+      Sea $E/K$ una extensión algebraica tal que para cualquier extensión finita $F/K$ existe un K-homomorfismo $\sigma:F/K\to E/K$. Demuestra  que entonces E es una clausura algebraica de K.
+  \end{ejercicio}
+
+  \begin{solucion}
+      Sea $E/K$ la extensión algebraica que se especifica en el enunciado. Queremos ver que $E$ es una clausura algebraica de $K$; es decir, que $E$ es una extensión algebraica y es un cuerpo algebraicamente cerrado sobre $K$. Usaremos una caracterización de clausura algebraica muy interesante para este ejercicio: el cuerpo $E$ es una clausura algebraica sobre $K$ si $E/K$ es una extensión algebraica y todo polinomio no constante $p\in K[X]$ descompone en $E[X]$.
+
+      Lo primero lo tenemos por hipótesis. Para probar lo segundo, tomemos $p\in K[X]$ un polinomio cualquiera no constante con coeficientes en $K$.
+
+      Consideramos $F$, el cuerpo de descomposición de $p$. Por la definición de cuerpo de descomposición sabemos que la extensión $F/K$ es finita\footnote{Como $F=K(\alpha_1,\dots,\alpha_n)$ ---donde $\alpha_i$ son todas las raíces de $p$ y $n$, su grado--- tenemos que $[F:K]\leq n!$}.
+
+      Podemos entonces aplicar la hipótesis del enunciado: como $F/K$ es finita, existe un homomorfismo $\sigma : F/K \to E/K$. El polinomio $p$ se queda invariante por $\sigma$, pues los coeficientes de $p$ están en $K$ y estos elementos son fijos por $\sigma$. Además, tenemos que:
+      \begin{align*}
+          p &= \sigma(p) = \sigma\left((X-\alpha_1)\cdots(X-\alpha_n)\right) = (X-\sigma(\alpha_1))\cdots(X-\sigma(\alpha_n)) = \\
+          &= (X-\beta_1)\cdots(X-\beta_n)
+      \end{align*}
+      donde $\beta_i = \sigma(\alpha_i) \in E$.
+
+      De aquí deducimos directamente, junto con la hipótesis del enunciado, que $E$ cumple la caracterización expuesta anteriormente, con lo que $E$ es una clausura algebraica de $K$.
+  \end{solucion}
+
+  \newpage
+
+  \begin{ejercicio}
+      Demuestra que la clausura algebraica de $\mathbb{Q}$ no es una extensión finita de $\mathbb{Q}$.
+  \end{ejercicio}
+
+  \begin{solucion}
+      Consideremos el polinomio $p_n = X^n-2$, donde $n\in\mathbb{N}$. Es claro que $q=2$ divide a todos los coeficientes menos al líder y que su cuadrado $q^2=4$ no divide al coeficiente constante, sea cual sea $n$. Por tanto, el criterio de Eisenstein nos dice que $p_n$ es irreducible, $\forall n \in \mathbb{N}$.
+
+      Por otro lado, sabemos que existe una extensión $F_n/\mathbb{Q}$ en la que $p_n$ tiene al menos una raíz: sea ésta $\alpha$. Como $F_n=\mathbb{Q}[\alpha]$ y tenemos que $Irr(\alpha,\mathbb{Q}) = p_n$ tiene grado $n$, entonces $F_n/\mathbb{Q}$ es de grado $n$. Podemos crear entonces una extensión de grado $n$ por cada polinomio $p_n$.
+
+      Si $\bar{\mathbb{Q}}$ es la clausura algebraica de $\mathbb{Q}$, tenemos la torre de cuerpos
+      \[
+      \mathbb{Q} \subset F_1 \subset F_2 \subset \cdots \subset F_n \subset \cdots \subset \bar{\mathbb{Q}}
+      \]
+
+      Entonces, $\bar{\mathbb{Q}}$ tiene subextensiones de cualquier grado. Concluimos entonces que $[\bar{\mathbb{Q}}:\mathbb{Q}] = \infty$.
+  \end{solucion}
+
+  \begin{ejercicio}
+      Sea $F/K$ una extensión con F algebraicamente cerrado. Si llamamos
+      \[
+      E = \{\alpha\in F \;|\; \text{$\alpha$ es algebraico sobre $K$}\}
+      \]
+      demuestra que $E$ es una clausura algebraica de K.
+  \end{ejercicio}
+
+  \begin{solucion}
+      Tenemos que demostrar que $E$ es una clausura algebraica de $K$; es decir, que $E/K$ es una extensión algebraica y que $E$ es un cuerpo algebraicamente cerrado.
+
+      Lo primero lo tenemos por la definición de $E$. Para probar lo segundo, basta con demostrar una de las caracterizaciones equivalentes de cuerpo algebraicamente cerrado; a saber:
+      \begin{enumerate}
+          \item \label{res} Todo polinomio no constante en $E[X]$ tiene al menos una raíz en $E$.
+          \item Todo polinomio no constante en $E[X]$ descompone en $E$.
+          \item Todo polinomio no constante irreducible en $E[X]$ tiene grado 1.
+          \item $E$ no tiene extensiones algebraicas propias.
+      \end{enumerate}
+
+      Vamos a usar la caracterización \ref{res}, así que tomamos
+      \[
+      p(X) = \sum_{i=0}^n a_n X^i \in E[X]
+      \]
+      un polinomio cualquiera no constante con coeficientes en $E$.
+
+      Como $F$ es algebraicamente cerrado y $E\subset F$ sabemos, por \ref{res}, que existe en F una raíz de $p$; esto es, $\exists\alpha\in F \;/\; p(\alpha)=0$.
+
+      Podemos considerar entonces $K'=K(a_0,\dots,a_n)$ el cuerpo extensión de $K$ con todos los coeficientes del polinomio $p$. Es evidente por la construcción de $K'$ que $\alpha$ es algebraico sobre $K'$.
+
+      Pero por hipótesis los $a_i$, por ser elementos de $E$, son algebraicos sobre $K$, luego $\alpha$ es algebraico también sobre $K$ y, por tanto, cumple la condición dada por la definición de $E$. Esto es, $\alpha\in E$.
+
+      Tenemos entonces que para todo polinomio no constante en $E[X]$, existe una raíz en $E$; es decir, $E$ es algebraicamente cerrado.
+
+      Concluimos así que $E$ es una clausura algebraica de K.
+  \end{solucion}
+\end{document}

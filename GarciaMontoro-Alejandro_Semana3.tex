@@ -1,0 +1,246 @@
+\documentclass[a4paper, 11pt]{article}
+
+%Comandos para configurar el idioma
+\usepackage[spanish,activeacute]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} %Necesario para el uso de las comillas latinas.
+
+\usepackage{hyperref}
+\hypersetup{
+  pdftitle={Semana 3},
+  pdfauthor={Alejandro García Montoro},
+  unicode,
+  plainpages=false,
+  colorlinks,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  urlcolor=black,
+}
+
+%Paquetes matemáticos
+\usepackage{amsmath,amsfonts,amsthm}
+\usepackage[all]{xy} %Para diagramas
+\usepackage{graphicx} %Inclusion imagenes
+\usepackage{enumerate} %Personalización de enumeraciones
+\usepackage{mathtools} %Para \coloneqq
+\usepackage{tikz} %Dibujos
+\usetikzlibrary{positioning} %Distancias y posicionamiento en tikz
+
+%Tipografía escalable
+\usepackage{lmodern}
+%Legibilidad
+\usepackage{microtype}
+
+\title{Álgebra III \\ Semana 3}
+\author{Alejandro García Montoro\\
+    \href{mailto:agarciamontoro@correo.ugr.es}{agarciamontoro@correo.ugr.es}}
+\date{\today}
+
+\theoremstyle{definition}
+\newtheorem{ejercicio}{Ejercicio}
+\newtheorem*{solucion}{Solución}
+\theoremstyle{remark}
+\newtheorem{apartado}{Apartado}[ejercicio]
+
+\begin{document}
+
+  \maketitle
+
+  \begin{ejercicio}
+  \end{ejercicio}
+
+  \begin{solucion}
+      Considerando $\mathbb{F}_p$, el cuerpo $F$ es un espacio vectorial sobre $\mathbb{F}_p$. Así, como espacio vectorial, tenemos que
+      \[
+      F \cong \mathbb{F}_p^n
+      \]
+      con un $n\in\mathbb{N}$. Por tanto, concluimos que $F$ tiene $p^n$ elementos.
+  \end{solucion}
+
+  \begin{ejercicio}
+  \end{ejercicio}
+
+  \begin{solucion}
+      \begin{apartado}
+          Sea $\alpha = \sqrt{7}$. $\alpha$ es claramente algebraico sobre $\mathbb{Q}$, pues es raíz del polinomio $p(X) = X^2 - 7 \in \mathbb{Q}[X]$.
+      \end{apartado}
+
+      \begin{apartado}
+          Sea $\alpha = \sqrt[3]{3}$. $\alpha$ es claramente algebraico sobre $\mathbb{Q}$, pues es raíz del polinomio $p(X) = X^3 - 3 \in \mathbb{Q}[X]$.
+      \end{apartado}
+
+      \begin{apartado}
+          Supongamos que $\pi^2$ es algebraico sobre $\mathbb{Q}$. Consideramos la extensión de cuerpos siguiente:
+
+          \begin{figure}[h]
+              \centering
+              \begin{tikzpicture}[node distance=2cm]
+                  \node(1)                      {$\mathbb{Q}(\pi^2)$};
+                  \node(2)  [below=1cm of 1]    {$\mathbb{Q}(\pi)$};
+                  \node(3)  [below=1cm of 2]    {$\mathbb{Q}$};
+
+                  \draw(1) -- (2);
+                  \draw(2) -- (3);
+                  \path [bend right] (1) edge (3);
+              \end{tikzpicture}
+          \end{figure}
+
+          Como $\pi^2$ es algebraico sobre $\mathbb{Q}$, al ser el generador de $\mathbb{Q}(\pi^2)$, concluimos que $\mathbb{Q}(\pi^2)/\mathbb{Q}$ es una extensión algebraica.
+
+          Sabemos por teoría que dada una torre de cuerpos $K \subset F \subset E$, $K/E$ es algebraica $\iff$ $E/F$ y $F/K$ son algebraicas. Por tanto, como  $\mathbb{Q}(\pi^2)/\mathbb{Q}$ es una extensión algebraica, también lo es $\mathbb{Q}(\pi)/\mathbb{Q}$.
+
+          Concluimos que $\pi$ ---por pertenecer a la extensión algebraica $\mathbb{Q}(\pi)$--- es algebraico, lo que es una contradicción. Por tanto, nuestra hipótesis era falsa: $\pi^2$ es trascendente sobre $\mathbb{Q}$.
+      \end{apartado}
+
+      \begin{apartado}
+          Sea $\alpha = e^3+1$. Podemos escribir $e^3 + 1 - \alpha = 0$, luego concluimos que $e$ es algebraico en la extensión $\mathbb{Q}(\alpha)/\mathbb{Q}$.
+
+          Por el mismo razonamiento anterior, el suponer que $\alpha$ es algebraico sobre $\mathbb{Q}$ nos lleva a concluir que $e$ también lo es. Eso es una contradicción, luego $\alpha = e^3+1$ es trascendente sobre $\mathbb{Q}$.
+      \end{apartado}
+
+      \begin{apartado}
+          Sea $\alpha = \sqrt{i}+2$. Manipulando un poco esta igualdad tenemos:
+          \begin{align*}
+              \alpha-2 &= \sqrt{i} \\
+              (\alpha-2)^4 &= -1 \\
+              \alpha^4-8\alpha^3-32\alpha+17 &= 0
+          \end{align*}
+
+          Es claro entonces que $\alpha$ es raíz del polinomio $p(X) = X^4-8X^3-32X+17 \in \mathbb{Q}[X]$, con lo que $\alpha$ es algebraico.
+      \end{apartado}
+  \end{solucion}
+
+  \begin{ejercicio}
+  \end{ejercicio}
+
+  \begin{solucion}
+      Sea $f(X) = X^3 + 3X + 1$ un polinomio en $\mathbb{Q}[X]$. No podemos usar el criterio de Eisenstein para ver que es irreducible, pero sabemos por Ruffini que todas las raíces que ese polinomio puede tener en $\mathbb{Q}$ son de la forma
+      \[
+      \frac{p}{q}\;\; / \;\; p,q\in\mathbb{Z},\;\; p|1 \textrm{ y } q|1
+      \]Por tanto, el conjunto de posibles raíces es $\{1,-1\}$. Pero ninguna de esas es raíz de $f(X)$:
+      \begin{align*}
+          f(-1) = -3 \neq 0 \\
+          f(1) = 5 \neq 0
+      \end{align*}
+
+      Como $f(X)$ no tiene raíces en $\mathbb{Q}$ y es un polinomio de grado 3 ---entre sus raíces hay al menos una real---, concluimos que $f(X)$ es un polinomio irreducible en $\mathbb{Q}[X]$.
+
+      \begin{apartado}
+          Calculemos $(1+\alpha)(1+\alpha+\alpha^2)$, con $\alpha$ raíz de $f(X)$.
+
+          Desarrollando:
+          \[
+              (1+\alpha)(1+\alpha+\alpha^2) = 1 + 2\alpha + 2\alpha^2 + \alpha^3
+          \]
+
+          Sabemos, por ser $\alpha$ raíz de $f(X)$, que $\alpha^3 + 3\alpha + 1 = 0$. Si manipulamos la igualdad anterior teniendo en cuenta esta condición, llegamos a lo que queremos:
+          \begin{align*}
+              (1+\alpha)(1+\alpha+\alpha^2) &= \alpha^3 + 3\alpha + 1 + 2\alpha^2 - \alpha \\
+              (1+\alpha)(1+\alpha+\alpha^2) &= 2\alpha^2 - \alpha
+          \end{align*}
+
+          Aquí termina el cálculo, pues los elementos de $\mathbb{Q}(\alpha)$, que es la extensión que estamos considerando, son de la siguiente forma:
+          \[
+          \mathbb{Q}(\alpha) = \frac{\mathbb{Q}[X]}{X^3+3X+1} = \{a + b\alpha + c\alpha^2 / a,b,c\in\mathbb{Q}\}
+          \]
+      \end{apartado}
+
+      \begin{apartado}
+          Calculemos $\frac{1+\alpha}{1+\alpha+\alpha^2}$, con $\alpha$ raíz de $f(X)$:
+
+          Queremos obtener los $a,b,c$ que satisfacen la siguiente igualdad:
+          \[
+          \frac{1+\alpha}{1+\alpha+\alpha^2} = a + b\alpha + c\alpha^2
+          \]
+
+          Multiplicando por $1 + \alpha + \alpha^2$ y desarrollando:
+          \begin{align*}
+              1 + \alpha &= (a + b\alpha + c\alpha^2)(1 + \alpha + \alpha^2) \\
+              1 + \alpha &= a + (a+b)\alpha + (a+b+c)\alpha^2 + (b+c)\alpha^3 + c\alpha^4
+          \end{align*}
+
+          Simplificamos la parte de la derecha tomando el resto de dividir el polinomio asociado, $ a + (a+b)X + (a+b+c)X^2 + (b+c)X^3 + cX^4$ entre $1+3X+X^3$; que vale $(a-b-c) + (a-2b-4c)X + (a+b-2c)X^2$. Llegamos entonces a la igualdad
+          \[
+          1 + \alpha = (a-b-c) + (a-2b-4c)X + (a+b-2c)X^2
+          \]
+
+          De aquí, igualando coeficientes tenemos un sistema de ecuaciones ---esto lo podemos hacer porque los elementos de $\mathbb{Q}(\alpha)$ se escriben de forma única---:
+          \begin{align*}
+              1 &= a-b-c \\
+              1 &= a-2b-4c \\
+              0 &= a+b-2c
+          \end{align*}
+          cuya solución es $a = \frac{5}{7}, b = -\frac{3}{7}, c = \frac{1}{7}$. Por tanto, concluimos el ejercicio:
+          \[
+          \frac{1+\alpha}{1+\alpha+\alpha^2} = \frac{5}{7} - \frac{3}{7}\alpha + \frac{1}{7}\alpha^2
+          \]
+      \end{apartado}
+  \end{solucion}
+
+  \begin{ejercicio}
+  \end{ejercicio}
+
+  \begin{solucion}
+      \begin{apartado}
+          Sea $\alpha = 2 + \sqrt{5}$.
+
+          Manipulando esta igualdad:
+          \begin{align*}
+              \alpha - 2 &= \sqrt{5} \\
+              \alpha^2 - 4\alpha + 4 &= 5 \\
+              \alpha^2 - 4\alpha - 1 &= 0
+          \end{align*}
+
+          Por tanto, $\alpha$ es raíz de $p(X) = X^2 -4X -1$. Como las raíces de $p(X)$ son $2 \pm \sqrt{5}\notin\mathbb{Q}$, concluimos que
+          \[
+          Irr(2 + \sqrt{5}, \mathbb{Q}) = X^2 - 4X - 1
+          \]
+
+          Es claro además que $\mathbb{Q}(\alpha) = \mathbb{Q}(\sqrt{5})$.
+      \end{apartado}
+
+      \begin{apartado}
+          Sea $\alpha = \sqrt[4]{5} + \sqrt{5}$.
+
+          Manipulando esta igualdad:
+          \begin{align*}
+              \alpha - \sqrt{5} &= \sqrt[4]{5} \\
+              \alpha^2 - 2\alpha\sqrt{5} + 5 &= \sqrt{5} \\
+              \alpha^2 + 5 &= \sqrt{5}(1-2\alpha) \\
+              \alpha^4 + 25 + 10\alpha^2 &= 5+20\alpha^2-20\alpha \\
+              \alpha^4 - 10\alpha^2 + 20\alpha + 20 &= 0
+          \end{align*}
+
+          Por tanto, $\alpha$ es raíz de $p(X) = X^4 - 10X^2 + 20X + 20$. Para ver que es irreducible, basta aplicar Eisenstein con el primo 5. Concluimos que
+          \[
+          Irr(\sqrt[4]{5} + \sqrt{5}, \mathbb{Q}) = X^4 - 10X^2 + 20X + 20
+          \]
+
+          Es claro además que $\mathbb{Q}(\alpha) = \mathbb{Q}(\sqrt[4]{5})$, pues $\sqrt{5} = \sqrt[4]{5}^4$.
+      \end{apartado}
+
+      \begin{apartado}
+          Sea $\alpha = \sqrt[3]{2} + \sqrt[3]{4}$.
+
+          Elevando al cuadrado:
+          \begin{align*}
+              \alpha^3 = 2 + 6\sqrt[3]{2} + 6\sqrt[3]{4} + 4
+          \end{align*}
+
+          Como $\sqrt[3]{2} + \sqrt[3]{4} = \alpha$, tenemos lo siguiente:
+          \begin{align*}
+              \alpha^3 &= 2 + 6\alpha + 4 \\
+              \alpha^3 - 6\alpha - 6 &= 0
+          \end{align*}
+
+          Por tanto, $\alpha$ es raíz de $p(X) = X^3-6X-6$. Aplicando el criterio de Eisenstein con el primo 3, concluimos que es irreducible. Así:
+          \[
+          Irr(\sqrt[3]{2} + \sqrt[3]{4},\mathbb{Q}) = X^3-6X-6
+          \]
+
+          Es claro además que $\mathbb{Q}(\alpha) = \mathbb{Q}(\sqrt[3]{2})$, pues $\sqrt[3]{4} = \sqrt[3]{2} ^ 2$.
+      \end{apartado}
+  \end{solucion}
+
+\end{document}

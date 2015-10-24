@@ -1,0 +1,448 @@
+\documentclass[a4paper, 11pt]{article}
+
+%Comandos para configurar el idioma
+\usepackage[spanish,activeacute]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} %Necesario para el uso de las comillas latinas.
+
+\usepackage{hyperref}
+\hypersetup{
+  pdftitle={Semana 1},
+  pdfauthor={Alejandro García Montoro},
+  unicode,
+  plainpages=false,
+  colorlinks,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  urlcolor=black,
+}
+
+%Paquetes matemáticos
+\usepackage{amsmath,amsfonts,amsthm}
+\usepackage[all]{xy} %Para diagramas
+\usepackage{enumerate} %Personalización de enumeraciones
+\usepackage{tikz} %Dibujos
+\usetikzlibrary{positioning} %Distancias y posicionamiento en tikz
+
+%Tipografía escalable
+\usepackage{lmodern}
+%Legibilidad
+\usepackage{microtype}
+
+\title{Álgebra III \\ Semana 1}
+\author{Alejandro García Montoro\\
+    \href{mailto:agarciamontoro@correo.ugr.es}{agarciamontoro@correo.ugr.es}}
+\date{\today}
+
+\theoremstyle{definition}
+\newtheorem{ejercicio}{Ejercicio}
+\newtheorem*{solucion}{Solución}
+\theoremstyle{remark}
+\newtheorem{apartado}{Apartado}[ejercicio]
+
+\begin{document}
+
+  \maketitle
+
+  \begin{ejercicio}
+  \end{ejercicio}
+
+  \begin{solucion}
+      \begin{apartado}
+          Veamos que $\langle\varphi,\psi\rangle$ es isomorfo a $D_4$:
+
+          Sabemos que $D_4 = \langle a,b / a^2 = b^4 = 1, ba = ab^3 \rangle$
+
+          Comprobemos entonces que los elementos de $\langle\varphi,\psi\rangle$ cumplen esas restricciones. Atendiendo únicamente a las imágenes de $i$ y $\sqrt[4]{3}$, es directo verlo:
+
+          \begin{itemize}
+              \item \textbf{$i$}:
+              \begin{itemize}
+                  \item $\varphi^2(i) = \varphi(\varphi(i)) = \varphi(-i) = i$
+                  \item $\psi^4(i) = \psi(\psi(\psi(\psi(i)))) = \psi(\psi(\psi(i))) = \psi(\psi(i)) = \psi(i) = i$
+              \end{itemize}
+
+              \item \textbf{$\sqrt[4]{3}$}:
+              \begin{itemize}
+                  \item $\varphi^2(\sqrt[4]{3}) = \varphi(\varphi(\sqrt[4]{3})) = \varphi(\sqrt[4]{3}) = \sqrt[4]{3}$
+                  \item $\psi^4(\sqrt[4]{3}) = \psi(\psi(\psi(\psi(\sqrt[4]{3})))) = \psi(\psi(\psi(i\sqrt[4]{3}))) = \psi(\psi(-\sqrt[4]{3})) = \psi(-i\sqrt[4]{3}) = \sqrt[4]{3}$
+              \end{itemize}
+          \end{itemize}
+
+          Concluimos entonces que $\varphi^2 = \psi^4 = id$. Como $id$ es el $1$ de nuestro grupo, tenemos la primera relación. Para la segunda, seguimos el mismo proceso:
+
+          \begin{itemize}
+              \item \textbf{$i$}:
+              \begin{itemize}
+                  \item $\psi\varphi(i) = \psi(\varphi(i)) = \psi(-i) = -i$
+                  \item $\varphi\psi^3(i) = \varphi(\psi^3(i)) = \varphi(i) = -i$
+              \end{itemize}
+
+              \item \textbf{$\sqrt[4]{3}$}:
+              \begin{itemize}
+                  \item $\psi\varphi(\sqrt[4]{3}) = \psi(\varphi(\sqrt[4]{3})) = \psi(\sqrt[4]{3}) = i\sqrt[4]{3}$
+                  \item $\varphi\psi^3(\sqrt[4]{3}) = \varphi(\psi^3(\sqrt[4]{3})) = \varphi(-i\sqrt[4]{3}) = i\sqrt[4]{3}$
+              \end{itemize}
+          \end{itemize}
+
+          Por tanto, $\psi\varphi = \varphi\psi^3$, que es la segunda relación.
+
+          Así, concluimos que $\langle\varphi,\psi\rangle = \langle\varphi,\psi / \varphi^2 = \psi^4 = id, \psi\varphi = \varphi\psi^3\rangle = D_4$
+      \end{apartado}
+
+      \begin{apartado}
+          Como $\psi$ es la rotación de amplitud $\pi/4$ y $\varphi$ es la simetría del eje 1---3, con los vértices numerados como en el enunciado, tenemos las siguientes expresiones:
+
+          \[
+          \varphi = (24) \;\;\;\;\; \psi = (1234)
+          \]
+      \end{apartado}
+
+      \begin{apartado}
+          El retículo de subgrupos de $D_4$, con notación de permutaciones, y en función de $\varphi$ y $\psi$, queda representado en las siguientes dos figuras:
+          \vspace{1 cm}
+
+          \centering
+          \begin{tikzpicture}[node distance=2cm]
+              \node(D4)                             {$D_4$};
+
+              \node(S41)       [below left=1cm and 2cm of D4]   {$\{id,(13)(24),(12)(34),(14)(23)\}$};
+              \node(S42)       [below=1cm of D4]        {$\{id,(1234),(13)(24),(1432)\}$};
+              \node(S43)       [below right=1cm and 2cm of D4]  {$\{id,(13)(24),(13),(24)\}$};
+
+              \node(S21)       [below=1cm of S41]       {$\{id,(12)(34)\}$};
+              \node(S22)       [below right=1cm and -1.5cm of S41] {$\{id,(14)(23)\}$};
+              \node(S23)       [below=1cm of S42]       {$\{id,(13)(24)\}$};
+              \node(S24)       [below left=1cm and -1cm of S43]  {$\{id,(13)\}$};
+              \node(S25)       [below=1cm of S43]       {$\{id,(24)\}$};
+
+              \node(ID)        [below=4cm of D4]       {$\{id\}$};
+
+              \draw(D4)       -- (S41);
+              \draw(D4)       -- (S42);
+              \draw(D4)       -- (S43);
+
+              \draw(S41)      -- (S21);
+              \draw(S41)      -- (S22);
+              \draw(S41)      -- (S23);
+
+              \draw(S42)      -- (S23);
+
+              \draw(S43)      -- (S23);
+              \draw(S43)      -- (S24);
+              \draw(S43)      -- (S25);
+
+              \draw(S21)      -- (ID);
+              \draw(S22)      -- (ID);
+              \draw(S23)      -- (ID);
+              \draw(S24)      -- (ID);
+              \draw(S25)      -- (ID);
+          \end{tikzpicture}
+
+          \vspace{1 cm}
+
+          \centering
+          \begin{tikzpicture}[node distance=2cm]
+              \node(D4)                             {$D_4$};
+
+              \node(S41)       [below left=1cm and 2cm of D4]   {$\langle\psi^2,\varphi\psi\rangle$};
+              \node(S42)       [below=1cm of D4]        {$\langle\psi\rangle$};
+              \node(S43)       [below right=1cm and 2cm of D4]  {$\langle\psi^2,\varphi\rangle$};
+
+              \node(S21)       [below=1cm of S41]       {$\langle\psi\varphi\rangle$};
+              \node(S22)       [below right=1cm and 0cm of S41] {$\langle\varphi\psi\rangle$};
+              \node(S23)       [below=1cm of S42]       {$\langle\psi^2\rangle$};
+              \node(S24)       [below left=1cm and 0cm of S43]  {$\langle\varphi\psi^2\rangle$};
+              \node(S25)       [below=1cm of S43]       {$\langle\varphi\rangle$};
+
+              \node(ID)        [below=4cm of D4]       {$\{id\}$};
+
+              \draw(D4)       -- (S41);
+              \draw(D4)       -- (S42);
+              \draw(D4)       -- (S43);
+
+              \draw(S41)      -- (S21);
+              \draw(S41)      -- (S22);
+              \draw(S41)      -- (S23);
+
+              \draw(S42)      -- (S23);
+
+              \draw(S43)      -- (S23);
+              \draw(S43)      -- (S24);
+              \draw(S43)      -- (S25);
+
+              \draw(S21)      -- (ID);
+              \draw(S22)      -- (ID);
+              \draw(S23)      -- (ID);
+              \draw(S24)      -- (ID);
+              \draw(S25)      -- (ID);
+          \end{tikzpicture}
+
+      \end{apartado}
+
+      \begin{apartado}
+          Es claro que los tres primeros subgrupos, $\langle\psi^2,\varphi\psi\rangle$, $\langle\psi\rangle$ y $\langle\psi^2,\varphi\rangle$ son de orden 4, uno generado por un elemento de orden 4, $\psi$ y los otros dos isomorfos al grupo de Klein.
+
+          Los otros cinco son de orden 2, ya que están generados por un solo elemento de orden 2; basta comprobar que los cuadrados de cada elemento generador son iguales a la identidad, usando las relaciones que da la presentación del grupo.
+      \end{apartado}
+  \end{solucion}
+
+  \begin{ejercicio}
+  \end{ejercicio}
+
+  \begin{solucion}
+      \begin{apartado}
+          Sean $x\in\mathbb{Q}(\sqrt[4]{3},i)$ y $H=\langle\phi_1,\dots,\phi_t\rangle \subset Aut(\mathbb{Q}(\sqrt[4]{3},i)/\mathbb{Q})$. Queremos probar que
+
+          \[
+            \phi(x) = x \;\;\forall \phi\in H \iff \phi_i(x)=x \;\;\forall i = 1,2,\dots,t
+          \]
+
+          Veamos las dos implicaciones:
+
+          ($\implies$) Trivial. Si $\phi(x) = x \;\;\forall \phi\in H$, como $\phi_i\in H \;\;\forall i = 1,2,\dots,t$, entonces, claramente, $\phi_i(x)=x \;\;\forall i = 1,2,\dots,t$
+
+          ($\impliedby$) Sabemos que $\forall \phi\in H$, $\phi$ es una composición de los $\phi_i$. Evidentemente, si cada uno de los $\phi_i$ deja fijo a $x$, entonces cualquier composición que hagamos con ellos dejará fijo a $x$. \qed
+      \end{apartado}
+
+      \begin{apartado}
+          Sea $F^H$ el conjunto de todos los elementos fijos de $H$.
+
+          El elemento neutro para la suma y el elemento neutro para el producto están en $F^H$, ya que $0,1 \in \mathbb{Q} \implies 0,1\in F^H$.
+
+          Como H es un subconjunto de automorfismos, todos sus elementos son, en particular, homomorfismos. Por tanto, el conjunto $F^H$ es cerrado para la suma y el producto. Además, es claro que todos los elementos de $F^H\\\{0\}$ tienen, inverso para la suma e inverso para el producto, pues los coeficientes, que son elementos de $\mathbb{Q}$, los tienen.
+
+          Concluimos por tanto que $F^H$ es un cuerpo.\qed
+      \end{apartado}
+
+      \begin{apartado}
+          Sean $H_1 \subset H_2 \subset Aut(\mathbb{Q}(\sqrt[4]{3},i)/\mathbb{Q})$ y $x \in F^{H_2}$. Queremos probar que $x \in F^{H_1}$.
+
+          Tal y como hemos tomado $x$, tenemos que $\varphi(x) = x$, $\forall \varphi \in H_2$. Si tomamos que $H_1 = \langle \phi_1, \dots, \phi_t \rangle$,
+          ,como $H_1 \subset H_2$, es claro que $\phi_i \in H_2$, $\forall i=1,\dots,t$. Por tanto, $\phi_i(x) = x$, $\forall i=1,\dots,t$.
+
+          Concluimos entonces, en virtud del primer apartado, que $x \in F^{H_1}$, tal y como queríamos demostrar. \qed
+      \end{apartado}
+
+      \begin{apartado}
+          Por los apartados anteriores, sabemos que el retículo tiene la misma estructura que el de $D_4$ pero \emph{invertido}.
+
+          Para calcular qué cuerpo corresponde a cada subgrupo, basta con calcular los elementos que se quedan fijos por los generadores de dicho subgrupo y obtener una base del cuerpo correspondiente.
+
+          Si tomamos $H = D_4$, tenemos que los únicos elementos que quedan fijos por \emph{todos} los automorfismos de $\mathbb{Q}(\sqrt[4]{3},i)/\mathbb{Q}$ son única y exclusivamente los elementos de $\mathbb{Q}$. Por tanto, en este caso: $F^H = \mathbb{Q}$.
+
+          En el caso de $H = \{id\}$, como todos los automorfismos dejan fijos a todos los elementos, concluimos que $F^H = \mathbb{Q}(\sqrt[4]{3},i)/\mathbb{Q}$.
+
+          Describimos a continuación el cálculo de dos subcuerpos para ilustrar esta técnica. Para esto hay que tener siempre en cuenta que todos los automorfismos que consideramos dejan fijos a los elementos de $\mathbb{Q}$.
+
+          Sea $H=\langle \varphi \rangle$. Calculemos $F^H$:
+
+          Sea
+          \[
+          x = a_0 + a_1 \sqrt[4]{3} + a_2 \sqrt[4]{3}^2 + a_3 \sqrt[4]{3}^3 + a_4 i + a_5 i \sqrt[4]{3} + a_6 i \sqrt[4]{3}^2 + a_7 i \sqrt[4]{3}^3
+          \]
+          un elemento genérico de $\mathbb{Q}(\sqrt[4]{3},i)$.
+
+          Como $\varphi(i)=-i$ y $\varphi(\sqrt[4]{3})=\sqrt[4]{3}$, tenemos que
+          \[
+          \varphi(x) = a_0 + a_1 \sqrt[4]{3} + a_2 \sqrt[4]{3}^2 + a_3 \sqrt[4]{3}^3 - a_4 i - a_5 i \sqrt[4]{3} - a_6 i \sqrt[4]{3}^2 - a_7 i \sqrt[4]{3}^3
+          \]
+
+          Por tanto, $x$ será un elemento fijo si esas dos expresiones son iguales; esto es:
+          \[
+          x \in F^H \iff x = \varphi(x) \iff a_4 = a_5 = a_6 = a_7 = 0
+          \]
+
+          Así, los elemetos de $F^H$ son de la forma
+          \[
+          x = a_0 + a_1 \sqrt[4]{3} + a_2 \sqrt[4]{3}^2 + a_3 \sqrt[4]{3}^3
+          \]
+          es decir, generados por el elemento $\sqrt[4]{3}$. Concluimos entonces que \[F^H = \mathbb{Q}(\sqrt[4]{3})\]
+
+          Sea ahora $H=\langle \psi\varphi \rangle$. Calculemos $F^H$:
+
+          Tomando el mismo elemento $x \in \mathbb{Q}(\sqrt[4]{3},i)$, la imagen por el único generador de $H$ es:
+          \[
+          \psi\varphi(x) = a_0 + a_1 i\sqrt[4]{3} - a_2 \sqrt[4]{3}^2 - a_3 i\sqrt[4]{3}^3 - a_4 i + a_5 \sqrt[4]{3} + a_6 i \sqrt[4]{3}^2 + a_7 \sqrt[4]{3}^3
+          \]
+
+          Entonces, tenemos las siguientes condiciones:
+          \[
+          x \in F^H \iff x = \psi\varphi(x) \iff
+          \begin{cases}
+              a_2 = a_4 = 0\\
+              a_1 = a_5\\
+              -a_3 = a_7
+          \end{cases}
+          \]
+
+          Es decir, nuestro elemento $x$ debe ser de la forma:
+          \[
+            x = a_0 + a_1 \sqrt[4]{3} + a_3 \sqrt[4]{3}^3 + a_1 i \sqrt[4]{3} + a_6 i \sqrt[4]{3}^2 - a_3 i \sqrt[4]{3}^3
+          \]
+
+          Juntando los coeficientes iguales y sacando factor común convenientemente
+          \begin{align*}
+            x &= a_0 + a_1(\sqrt[4]{3} + i \sqrt[4]{3}) + a_3(\sqrt[4]{3}^3 - i \sqrt[4]{3}^3) + a_6 i \sqrt[4]{3}^2\\
+            x &= a_0 + a_1\sqrt[4]{3}(1 + i) + a_3\sqrt[4]{3}^3(1 - i) + a_6 i \sqrt[4]{3}^2\\
+          \end{align*}
+
+          Por tanto, una base del cuerpo será $\{\sqrt[4]{3}(1 + i), \sqrt[4]{3}^3(1 - i), i\sqrt[4]{3}^2\}$, con lo que
+          \[
+            F^H = \mathbb{Q}(\sqrt[4]{3}(1 + i), \sqrt[4]{3}^3(1 - i), i\sqrt[4]{3}^2)
+          \]
+
+          Las cuentas con los demás subgrupos son exactamente iguales, de manera que el retículo de subcuerpos formados por los elementos que dejan fijos los subgrupos de $Aut(\mathbb{Q}(\sqrt[4]{3},i)/\mathbb{Q})$ es el siguiente:
+
+          \vspace{1 cm}
+
+          \centering
+          \begin{tikzpicture}[node distance=2cm]
+              \node(D4)                             {$\mathbb{Q}(\sqrt[4]{3},i)$};
+
+              \node(S41)       [below left=0cm and 3cm of S21]   {$\mathbb{Q}(i\sqrt[4]{3}^2)$};
+              \node(S42)       [below=0cm of S23]        {$\mathbb{Q}(i)$};
+              \node(S43)       [below=0cm of S24]  {$\mathbb{Q}(\sqrt[4]{3}^2)$};
+
+              \node(S21)       [below left=0cm and 3cm of D4]       {$\mathbb{Q}(\sqrt[4]{3}(1+i),i\sqrt[4]{3}^2,\sqrt[4]{3}^3(1-i))$};
+              \node(S22)       [below left=1cm and 0.5cm of D4] {$\mathbb{Q}(\sqrt[4]{3}(1-i),i\sqrt[4]{3}^2,\sqrt[4]{3}^3(1+i))$};
+              \node(S23)       [below=1cm of D4]       {$\mathbb{Q}(\sqrt[4]{3}^2,i)$};
+              \node(S24)       [below right=1cm and 0cm of D4]  {$\mathbb{Q}(\sqrt[4]{3}^2,i\sqrt[4]{3})$};
+              \node(S25)       [below right=1cm and 2.5cm of D4]       {$\mathbb{Q}(\sqrt[4]{3})$};
+
+              \node(ID)        [below=5cm of D4]       {$\mathbb{Q}$};
+
+              \draw(D4)       -- (S21);
+              \draw(D4)       -- (S22);
+              \draw(D4)       -- (S23);
+              \draw(D4)       -- (S24);
+              \draw(D4)       -- (S25);
+
+              \draw(S41)      -- (S21);
+              \draw(S41)      -- (S22);
+              \draw(S41)      -- (S23);
+
+              \draw(S42)      -- (S23);
+
+              \draw(S43)      -- (S23);
+              \draw(S43)      -- (S24);
+              \draw(S43)      -- (S25);
+
+              \draw(S41)      -- (ID);
+              \draw(S42)      -- (ID);
+              \draw(S43)      -- (ID);
+          \end{tikzpicture}
+      \end{apartado}
+  \end{solucion}
+
+  \begin{ejercicio}
+  \end{ejercicio}
+
+  \begin{solucion}
+      Sea $p(X,Y,Z) = X^4 + Y^4 + Z^4$. Para escribirlo en función de los polinomios simétricos, seguimos el algoritmo estudiado:
+
+      \begin{enumerate}
+          \item Tomamos el monomio mayor, siguiendo el orden lexicográfico; esto es, el $X^4$.
+          Como $X^4 = X^4 + Y^0 + Z^0$, elegimos el siguiente polinomio en función de los polinomios simétricos:
+          \[
+          e_1^{4-0}e_2^{0-0}e_3^0
+          \]
+          y notamos
+          \[
+          q(X,Y,Z) = p(X,Y,Z) - e_1^4
+          \]
+
+          Tenemos que
+          \begin{align*}
+              e_1^4 = (X+Y+Z)^4 = &X^4 + Y^4 + Z^4 +\\
+                      &4(X^3Y + X^3Z + Y^3X + Y^3Z + Z^3X + Z^3Y) +\\
+                      &6(X^2Y^2 + X^2Z^2 + Y^2Z^2) +\\
+                      &12(X^2YZ + XY^2Z + XYZ^2)
+          \end{align*}
+
+          Por tanto,
+          \begin{align*}
+              q(X,Y,Z) = p(X,Y,Z) - e_1^4 = &-4(X^3Y + X^3Z + Y^3X + Y^3Z + Z^3X + Z^3Y)\\
+                                            &-6(X^2Y^2 + X^2Z^2 + Y^2Z^2)\\
+                                            &-12(X^2YZ + XY^2Z + XYZ^2)
+          \end{align*}
+
+          Partimos ahora del polinomio $q(X,Y,Z)$ y hacemos el mismo trabajo:
+
+          \item El monomio mayor es $-4X^3Y$, así que
+          \[
+          -4X^3Y = -4X^3Y^1Z^0 \implies \textrm{Tomamos } -4e_1^{3-1}e_2^{1-0}e_3^0 = -4e_1^2e_2
+          \]
+
+          Calculamos el valor de $4e_1^2e_2$:
+          \begin{align*}
+              e_1^2 = (X+Y+Z)^2 = &X^2+Y^2+Z^2 + 2(XY+XZ+YZ)\\
+              e_2               = &XY + XZ + YZ&\\
+              e_1^2e_2          = &X^3Y + X^3Z + Y^3X + Y^3Z + Z^3X + Z^3Y +\\
+                                  &5(X^2YZ + XY^2Z + XYZ^2) +\\
+                                  &2(X^2Y^2 + X^2Z^2 + Y^2Z^2)\\
+              4e_1^2e_2          = &4X^3Y + X^3Z + Y^3X + Y^3Z + Z^3X + Z^3Y +\\
+                                  &20(X^2YZ + XY^2Z + XYZ^2) +\\
+                                  &8(X^2Y^2 + X^2Z^2 + Y^2Z^2)
+          \end{align*}
+
+          Tenemos entonces que
+          \begin{align*}
+              r(X,Y,Z) = q(X,Y,Z) + 4e_1^2e_2 = &8(X^2Y^2 + X^2Z^2 + Y^2Z^2) +\\
+                                                &2(X^2YZ + XY^2Z + XYZ^2)
+          \end{align*}
+
+          Repetimos el proceso con el polinomio $r$.
+
+          \item El monomio mayor es $8X^2Y^2$, así que
+          \[
+          8X^2Y^2 = 8X^2Y^2Z^0 \implies \textrm{Tomamos } 8e_1^{2-2}e_2^{2-0}e_3^0 = 8e_2^2
+          \]
+
+          El valor de $8e_2^2$ es:
+          \begin{align*}
+              8e_2^2 = 8(XY+XZ+YZ)^2 = &8(XY^2+XZ^2+YZ^2) +\\
+                                      &16(X^2YZ+XY^2Z+XYZ^2)
+          \end{align*}
+
+          Tenemos entonces que
+          \begin{align*}
+              s(X,Y,Z) = r(X,Y,Z) - 8e_2^2 = -14(X^2YZ+XY^2Z+XYZ^2)
+          \end{align*}
+
+          Repetimos el proceso con el polinomio $s$.
+
+          \item El monomio mayor es $-14X^2YZ$, así que
+          \[
+          -14X^2YZ -14X^2Y^1Z^1 \implies \textrm{Tomamos } -14e_1^{2-1}e_2^{1-1}e_3^1 = -14e_1e_3
+          \]
+
+          Calculamos el valor de $14e_1e_3$:
+          \begin{align*}
+              14e_1e_3 = 14(X + Y + Z)XYZ = 14(X^2YZ + XY^2Z + XYZ^2)
+          \end{align*}
+
+          Tenemos entonces que
+          \[
+          s(X,Y,Z) + 14e_1e_3 = 0
+          \]
+
+          \item Juntando todas las expresiones de los pasos anteriores llegamos a:
+          \begin{align*}
+              s(X,Y,Z) + 14e_1e_3 = 0 &\implies s(X,Y,Z) = -14e_1e_3 \implies\\
+              -14e_1e_3 = r(X,Y,Z) - 8e_2^2 &\implies r(X,Y,Z) = -14e_1e_3 + 8e_2^2 \implies\\
+              -14e_1e_3 + 8e_2^2 = q(X,Y,Z) + 4e_1^2e_2 &\implies q(X,Y,Z) = -14e_1e_3 + 8e_2^2 - 4e_1^2e_2 \implies\\
+              -14e_1e_3 + 8e_2^2 - 4e_1^2e_2 = p(X,Y,Z) - e_1^4 &\implies\\
+              p(X,Y,Z) = -14e_1e_3 + 8e_2^2 - 4e_1^2e_2 + e_1^4
+          \end{align*}
+
+          Concluimos entonces que la expresión de $p(X,Y,Z)$ en polinomios simétricos es:
+          \[
+          p(X,Y,Z) = e_1^4 + 8e_2^2 - 4e_1^2e_2 - 14e_1e_3
+          \]
+          \qed
+      \end{enumerate}
+  \end{solucion}
+
+\end{document}
