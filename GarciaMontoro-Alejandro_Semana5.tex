@@ -1,0 +1,158 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage[semana=5]{estilo}
+
+\begin{document}
+
+  \maketitle
+
+  \begin{ejercicio}
+      Calcula el grado de los cuerpos de descomposición de los siguientes polinomios sobre $\mathbb{Q}$:
+      \begin{enumerate}
+          \item $p(X) = X^3-2$
+          \item $q(X) = X^4-7$
+          \item $r(X) = (X^2-2)(X^2-5)$
+      \end{enumerate}
+  \end{ejercicio}
+
+  \begin{apartado}
+  \end{apartado}
+
+  \begin{solucion}
+      Para obtener el cuerpo de descomposición de un polinomio sobre un cuerpo $K$, basta sacar sus raíces $\alpha_1,\dots,\alpha_n$ y construir la extensión $K(\alpha_1,\dots,\alpha_n)$.
+
+      Las raíces de $p(X)$ son tres: $\sqrt[3]{2},\omega\sqrt[3]{2}$ y $\omega^2\sqrt[3]{2}$, donde $\omega$ es una raíz tercera de la unidad; es decir, es un elemento tal que $\omega^3=1$.
+
+      Por tanto, el cuerpo de descomposición de $p(X)$ es $\mathbb{Q}(\sqrt[3]{2},\omega\sqrt[3]{2},\omega^2\sqrt[3]{2})=\mathbb{Q}(\omega,\sqrt[3]{2})$.
+
+      Sabemos que
+      \[
+      [\mathbb{Q}(\omega,\sqrt[3]{2}):\mathbb{Q}] = [\mathbb{Q}(\omega,\sqrt[3]{2}):\mathbb{Q}(\sqrt[3]{2})][\mathbb{Q}(\sqrt[3]{2}):\mathbb{Q}]
+      \]
+
+      Como $\sqrt[3]{2}$ es raíz de $p(X)$, polinomio irreducible ---por el criterio de Eisenstein, por ejemplo--- de grado 3, tenemos que $[\mathbb{Q}(\sqrt[3]{2}):\mathbb{Q}] = 3$.
+
+      Además, sabemos que podemos acotar el grado del cuerpo de descomposición por el factorial del grado del polinomio:
+      \[
+      [\mathbb{Q}(\omega,\sqrt[3]{2}):\mathbb{Q}] \leq 3! = 6
+      \]
+
+      Por tanto, el grado que buscamos cumple:
+      \begin{itemize}
+          \item Es un múltiplo de 3.
+          \item Es menor o igual que 6.
+      \end{itemize}
+
+      Tenemos entonces que el grado o bien es 3 o bien es 6.
+
+      Supongamos que es 3. Entonces, $[\mathbb{Q}(\omega,\sqrt[3]{2}):\mathbb{Q}(\sqrt[3]{2})] = 1$. Esto implica que  $\mathbb{Q}(\omega,\sqrt[3]{2}) = \mathbb{Q}(\sqrt[3]{2})$. Pero sabemos que $\omega\notin\mathbb{Q}(\sqrt[3]{2})$, así que $\mathbb{Q}(\omega,\sqrt[3]{2}) \neq \mathbb{Q}(\sqrt[3]{2})$. Esto es una contradicción con la suposición de que el grado es 3.
+
+      Por tanto, concluimos que
+      \[
+      [\mathbb{Q}(\omega,\sqrt[3]{2}):\mathbb{Q}] = 6
+      \]
+  \end{solucion}
+
+  \begin{apartado}
+  \end{apartado}
+
+  \begin{solucion}
+      Las raíces de $q(X)$ son $\sqrt[4]{7},\xi\sqrt[4]{7},\xi^2\sqrt[4]{7}$ y $\xi^3\sqrt[4]{7}$, donde $\xi$ es una raíz cuarta de la unidad; esto es, un elemento tal que $\xi^4=1$.
+
+      Entonces, tenemos que el cuerpo de descomposición de $q(X)$ es
+      \[
+      \mathbb{Q}(\sqrt[4]{7},\xi\sqrt[4]{7},\xi^2\sqrt[4]{7},\xi^3\sqrt[4]{7}) = \mathbb{Q}(i,\sqrt[4]{7})
+      \]
+      donde $i=\xi$ es la notación usual de la raíz cuarta de la unidad.
+
+      Igual que antes, podemos deducir que $[\mathbb{Q}(\sqrt[4]{7}):\mathbb{Q}] = 4$. Además, como $[\mathbb{Q}(i,\sqrt[4]{7}):\mathbb{Q}] \leq 4! = 24$, tenemos que $[\mathbb{Q}(i,\sqrt[4]{7}):\mathbb{Q}] \in \{4,8,12,24\}$.
+
+      Es claro que $[\mathbb{Q}(i,\sqrt[4]{7}):\mathbb{Q}] > 4$, pues si fuera igual llegaríamos a la misma contradicción de antes ---porque $i\notin\mathbb{Q}(\sqrt[4]{7})$---.
+
+      Además, como $i$ es raíz del polinomio $X^4-1\in\mathbb{Q}(\sqrt[4]{7})$, sabemos que $[\mathbb{Q}(i,\sqrt[4]{7}):\mathbb{Q}(\sqrt[4]{7})]\leq 2$.
+
+      Concluimos por tanto que
+      \[
+      [\mathbb{Q}(i,\sqrt[4]{7}):\mathbb{Q}] = 8
+      \]
+  \end{solucion}
+
+  \begin{apartado}
+  \end{apartado}
+
+  \begin{solucion}
+      El cuerpo de descomposición de $r(X)$ es $\mathbb{Q}(\sqrt{2},\sqrt{5})$.
+
+      El grado es
+      \[
+      [\mathbb{Q}(\sqrt{2},\sqrt{5}):\mathbb{Q}] = [\mathbb{Q}(\sqrt{2},\sqrt{5}):\mathbb{Q}(\sqrt{2})][\mathbb{Q}(\sqrt{2}):\mathbb{Q}]
+      \]
+
+      Sabemos que $[\mathbb{Q}(\sqrt{2}):\mathbb{Q}] = 2$ por ser $\sqrt{2}$ una raíz del polinomio irreducible $X^2-2$. Además, como $\sqrt{5}\notin\mathbb{Q}(\sqrt{2})$, tenemos que $[\mathbb{Q}(\sqrt{2},\sqrt{5}):\mathbb{Q}(\sqrt{2})] = 2$.
+
+      Concluimos así que
+      \[
+      [\mathbb{Q}(\sqrt{2},\sqrt{5}):\mathbb{Q}] = 4
+      \]
+
+  \end{solucion}
+
+  \newpage
+  \begin{ejercicio}
+      ¿Es la extensión $\mathbb{Q}\left(\sqrt{2+\sqrt{-5}}\right)/\mathbb{Q}$ normal?
+  \end{ejercicio}
+
+  \begin{solucion}
+      Para ver si la extensión indicada es normal, basta ver si es cuerpo de descomposición de algún polinomio.
+
+      Para esto, estudiemos el elemento $\alpha = \sqrt{2+\sqrt{-5}}$. Manipulando este elemento, podemos ver de qué polinomio sobre $\mathbb{Q}$ es raíz:
+
+      \begin{align*}
+          \alpha = \sqrt{2+\sqrt{-5}} \\
+          \comment{Elevando al cuadrado} \alpha^2 = 2+\sqrt{-5} \\
+          \alpha^2 - 2 = \sqrt{-5} \\
+          \comment{Elevando al cuadrado} \alpha^4 - 4\alpha^2 + 4 = -5 \\
+          \alpha^4 - 4\alpha^2 + 9 = 0
+      \end{align*}
+  \end{solucion}
+
+  Es claro entonces que $\alpha$ es raíz del polinomio $p(X)=X^4-4X^2+9\in\mathbb{Q}[X]$.
+
+  Podemos calcular entonces el cuerpo de descomposición de $p(X)$:
+
+  Sus raíces ---que obtenemos, por ejemplo, haciendo el cambio de variable $Y=X^2$ y resolviendo--- son $\pm\sqrt{2+\sqrt{-5}}$ y $\pm\sqrt{2-\sqrt{-5}}$.
+
+  Por tanto, el cuerpo de descomposición de $p(X)$ es
+  \[
+  \mathbb{Q}(\sqrt{2+\sqrt{-5}},\sqrt{2-\sqrt{-5}})
+  \]
+
+  Podemos ahora estudiar si este cuerpo, en vez de generarlo con los dos radicales, podemos generarlo con uno. Esto es, ahora nos preguntamos:
+  \[
+  \mbox{¿} \mathbb{Q}(\sqrt{2+\sqrt{-5}},\sqrt{2-\sqrt{-5}}) = \mathbb{Q}(\sqrt{2+\sqrt{-5}}) ?
+  \]
+
+  Si la respuesta es afirmativa, habremos terminado el ejercicio, pues quedará probado que la extensión indicada en el enunciado es el cuerpo de descomposición del polinomio $p(X)=X^4-4X^2+9$ y será, por lo tanto, normal. Si la respuesta fuera negativa tendríamos que seguir buscando, pues esto no probaría que la extensión dada fuera no normal.
+
+  Para ver si los dos cuerpos son iguales, basta ver que
+  \[
+  \mathbb{Q}(\sqrt{2+\sqrt{-5}},\sqrt{2-\sqrt{-5}}) \subset \mathbb{Q}(\sqrt{2+\sqrt{-5}})
+  \]
+  ---la otra inclusión es trivial---.
+
+  Es decir, hay que probar que $\sqrt{2-\sqrt{-5}}\in\mathbb{Q}(\sqrt{2+\sqrt{-5}})$. Veamos qué pasa si multiplicamos los dos radicandos y despejamos nuestro elemento:
+  \begin{align*}
+      \sqrt{2+\sqrt{-5}}\sqrt{2-\sqrt{-5}} = \sqrt{4+5} = 3 \\
+      \sqrt{2-\sqrt{-5}} = \frac{3}{\sqrt{2+\sqrt{-5}}}
+  \end{align*}
+
+  Como vemos, se puede escribir $\sqrt{2-\sqrt{-5}}$ como una fracción de elementos de $\mathbb{Q}(\sqrt{2+\sqrt{-5}})$; es decir, tenemos que
+  \[
+  \sqrt{2-\sqrt{-5}}\in\mathbb{Q}(\sqrt{2+\sqrt{-5}})
+  \]
+
+  Concluimos por tanto que
+  \[
+  \mathbb{Q}(\sqrt{2+\sqrt{-5}},\sqrt{2-\sqrt{-5}}) = \mathbb{Q}(\sqrt{2+\sqrt{-5}})
+  \]
+  y, así, queda probado que $\mathbb{Q}(\sqrt{2+\sqrt{-5}})$ es una extensión normal.
+\end{document}
