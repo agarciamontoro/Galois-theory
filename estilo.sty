@@ -24,7 +24,7 @@
 
 %Paquetes matemáticos
 \usepackage{amsmath,amsfonts,amsthm}
-\usepackage[all]{xy} %Para diagramas
+%\usepackage[all]{xy} %Para diagramas
 \usepackage{graphicx} %Inclusion imagenes
 \usepackage{enumerate} %Personalización de enumeraciones
 \usepackage{mathtools} %Para \coloneqq
@@ -46,3 +46,9 @@
 \newtheorem*{solucion}{Solución}
 \theoremstyle{remark}
 \newtheorem{apartado}{Apartado}[ejercicio]
+
+% Useful for commenting align environments!
+% Taken from http://tex.stackexchange.com/a/38171
+\newcommand{\comment}[1]{%
+  \text{\phantom{(#1)}} \tag{#1}
+}
