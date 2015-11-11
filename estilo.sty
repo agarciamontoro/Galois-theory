@@ -78,3 +78,10 @@
 \newcommand{\comment}[1]{%
   \text{\phantom{(#1)}} \tag{#1}
 }
+
+\usepackage{hyperref}
+
+% Comando para añadir URL, enlace y pie de página de una vez.
+\newcommand\fnurl[2]{%
+  \href{#2}{#1}\footnote{\url{#2}}%
+}

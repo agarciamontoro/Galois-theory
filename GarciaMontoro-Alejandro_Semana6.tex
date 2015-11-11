@@ -327,7 +327,7 @@
       \end{align*}
       donde B es la matriz definida anteriormente.
 
-      Tenemos entonces que $(C_3 \times C_3) \rtimes_{\varphi} C_3$ es un grupo de orden 27 ---parejas de un grupo de orden 9 y de un grupo de orden 3--- con producto como sigue:
+      Tenemos entonces que $(C_3 \times C_3) \rtimes_{\varphi} C_3$ es un grupo no abeliano de orden 27 ---parejas de un grupo de orden 9 y de un grupo de orden 3--- con producto como sigue:
       \begin{align*}
           ((x_1,y_1),z_1)((x_2,y_2),z_2) &= ((x_1,y_1)\varphi(z_1)(x_2,y_2),z_1 z_2) =\\
           &= \begin{cases}
@@ -382,7 +382,17 @@
             \right)
     \end{align*}
 
-    Como antes, si consideramos el homomorfismo trivial
+    Que es no abeliano es claro; basta tomar, por ejemplo, los elementos $((0,1),2)$ y $((1,1),2)$, que no conmutan:
+    \begin{align*}
+        ((0,1),2)((1,1),2) = ((0,1(1+1)),2\cdot2) = ((0,2),1) \\
+        ((1,1),2)((0,1),2) = ((0,1(0+1)),2\cdot2) = ((0,1),1) \\
+    \end{align*}
+
+    Una búsqueda rápida en la \fnurl{wiki de GroupProps}{http://groupprops.subwiki.org/wiki/Groups_of_order_27} nos permite saber que hay sólo dos grupos no abelianos de orden 27: $M_{27} = C_9 \rtimes C_3$, \fnurl{el producto semidirecto del cíclico de orden nueve y del cíclico de orden tres}{http://groupprops.subwiki.org/wiki/M27}, y $UT(3,3)$, \fnurl{el grupo de matrices sobre $\mathbb{Z}_3$ unitriangulares}{{http://groupprops.subwiki.org/wiki/Prime-cube_order_group:U(3,3)}} ---es decir, matrices con todos los elementos de su diagonal igual a 1, todos los elementos debajo de la diagonal igual a 0 y elementos arbitrarios encima---,  de dimensión 3.
+
+    Como $C_3 \times C_3 \ncong C_9$, entonces $(C_3 \times C_3) \rtimes C_3 \ncong M_{27}$. Por tanto, podemos concluir que el grupo que buscamos es isomorfo al grupo de matrices unitriangulares de dimensión 3.
+
+    Además, como antes, si consideramos el homomorfismo trivial
     \begin{align*}
         \psi : C_3 &\longrightarrow Aut(C_3 \times C_3) \\
         0 &\longmapsto id \\
@@ -391,6 +401,14 @@
     tenemos el producto directo:
     \[
     (C_3 \times C_3) \rtimes_{\psi} C_3 = C_3 \times C_3 \times C_3
+    \]
+
+    Por tanto, el producto semidirecto que buscamos queda totalmente determinado:
+    \[
+    (C_3 \times C_3) \rtimes_{\varphi} C_3 = \begin{cases}
+      C_3 \times C_3 \times C_3 &\textrm{ si } \varphi = \textrm{trivial} \\
+      UT(3,3) &\textrm{ en otro caso}
+    \end{cases}
     \]
   \end{solucion}
 \end{document}
