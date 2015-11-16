@@ -1,0 +1,508 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage[semana=7]{estilo}
+
+\begin{document}
+
+  \maketitle
+  \begin{ejercicio}
+     Determinar el retículo de subgrupos del grupo de Galois del polinomio $p(X) = X^4-2X^2-2 \in \mathbb{Q}[X]$.
+  \end{ejercicio}
+
+  \begin{solucion}
+      Para estudiar el grupo de Galois del polinomio $p$ tenemos que encontrar su cuerpo de descomposición, $E$, y estudiar entonces el grupo $Gal(E/\mathbb{Q})$.
+
+      El polinomio $p(X) = X^4-2X^2-2$ tiene cuatro raíces:
+      \[
+      \alpha_1 = \sqrt{1 + \sqrt{3}}, \alpha_2 = -\sqrt{1 + \sqrt{3}}, \alpha_3 = \sqrt{1 - \sqrt{3}}, \alpha_4 = -\sqrt{1 - \sqrt{3}}
+      \]
+      Como $\alpha_1 = -\alpha_2$ y $\alpha_3 = -\alpha_4$, para estudiar el cuerpo de decomposición de $p$ basta fijarse únicamente en el par $\alpha_1, \alpha_3$ ---o en el par $\alpha_2, \alpha_4$---. Por tanto, el cuerpo con el queremos trabajar es:
+      \[
+      E = \mathbb{Q}( \sqrt{1 + \sqrt{3}}, \sqrt{1 - \sqrt{3}})
+      \]
+
+      Pero si multiplicamos ambos elementos, tenemos la siguiente relación:
+      \[
+          \sqrt{1 + \sqrt{3}}\sqrt{1 - \sqrt{3}} = \sqrt{1-10} = \sqrt{-1}\sqrt{9} = i\sqrt{2}
+      \]
+      con lo que tenemos que:
+      \begin{equation}
+          \sqrt{1 - \sqrt{3}} = \frac{i\sqrt{2}}{\sqrt{1 + \sqrt{3}}} \label{relacion}
+      \end{equation}
+
+      Entonces, en vez de trabajar con los generadores anteriores podemos trabajar con el cuerpo generado por $\alpha = \alpha_1 = \sqrt{1 + \sqrt{3}}$ y $\beta = i\sqrt{2}$:
+      \[
+      E = \mathbb{Q}(\alpha,\beta)
+      \]
+
+      Una vez determinada la extensión $E/\mathbb{Q}$, tenemos que pasar al estudio del grupo de Galois en sí. Es decir, hay que determinar el grupo $Gal(E/\mathbb{Q}) = Aut(E/\mathbb{Q})$.
+
+      Estos automorfismos, que dejan fijo al cuerpo base, $\mathbb{Q}$, están determinados totalmente por las imágenes de sus generadores. Estas imágenes, además, tienen que cumplir las mismas relaciones algebraicas que cumplen los generadores; a saber:
+      \begin{itemize}
+          \item $\alpha$ es raíz de $p$.
+          \item $\beta$ es raíz de $q(X) = X^2 + 2$.
+      \end{itemize}
+
+      Entonces, $\alpha$ tiene que aplicarse en cualquier otra raíz de $p$ y $\beta$ tiene que aplicarse en cualquier otra raíz de $q$. Es decir, tenemos las siguientes posibilidades:
+      \begin{align*}
+          \alpha &\longmapsto \alpha = \alpha_1, \alpha_2, \alpha_3, \alpha_4 \\
+          \beta &\longmapsto \beta, -\beta
+      \end{align*}
+
+      El grupo $Gal(E/\mathbb{Q}) = Aut(E/\mathbb{Q})$ tiene entonces 8 elementos, que podemos resumir en la siguiente tabla:
+
+      \begin{figure}[ht]
+          \centering
+          \begin{tabular}{c || *{7}{c|} c}
+              Generador & $id$ & $\varphi_1$ & $\varphi_2$ & $\varphi_3$ & $\varphi_4$  & $\varphi_5$ & $\varphi_6$ & $\varphi_7$ \\
+              \hline
+              $\alpha$ & $\alpha$ & $\alpha_2$ & $\alpha_3$ & $\alpha_4$ & $\alpha$ & $\alpha_2$ & $\alpha_3$ & $\alpha_4$  \\
+              $\beta$ & $\beta$ & $\beta$ & $\beta$ & $\beta$ & $-\beta$ & $-\beta$ & $-\beta$ & $-\beta$  \\
+          \end{tabular}
+      \end{figure}
+
+      Usando la igualdad \ref{relacion}, podemos escribir la tabla anterior en términos únicamente de $\alpha$ y $\beta$, lo que nos facilitará los cálculos a la hora de trabajar con los automorfismos. Las relaciones que tenemos son las siguientes:
+      \[
+          \alpha_2 = -\alpha \;\;\; \alpha_3 = \frac{\beta}{\alpha} \;\;\; \alpha_4 = -\frac{\beta}{\alpha}
+      \]
+      así que la tabla queda como sigue:
+
+      \begin{figure}[ht]
+          \centering
+          \begin{tabular}{c || *{7}{c|} c}
+              Generador & $id$ & $\varphi_1$ & $\varphi_2$ & $\varphi_3$ & $\varphi_4$  & $\varphi_5$ & $\varphi_6$ & $\varphi_7$ \\
+              \hline
+              $\alpha$ & $\alpha$ & $-\alpha$ & $\beta/\alpha$ & $-\beta/\alpha$ & $\alpha$ & $-\alpha$ & $\beta/\alpha$ & $-\beta/\alpha$  \\[5pt]
+              $\beta$ & $\beta$ & $\beta$ & $\beta$ & $\beta$ & $-\beta$ & $-\beta$ & $-\beta$ & $-\beta$  \\
+          \end{tabular}
+      \end{figure}
+
+      Podríamos trabajar directamente con la definición de estos automorfismos, pero vamos a estudiar un poco más lo que ya conocemos del retículo de subcuerpos de $E/\mathbb{Q}$ para poder conocer más sobre el retículo de subgrupos de $Gal(E/\mathbb{Q})$.
+
+      Hasta ahora, del retículo de subcuerpos de la extensión sabemos lo siguiente:
+      \begin{itemize}
+          \item Tenemos la extensión grande $E/\mathbb{Q}$ y las subextensiones $E/\mathbb{Q}(\alpha)$, $E/\mathbb{Q}(\beta)$, $\mathbb{Q}(\alpha)/\mathbb{Q}$ y $\mathbb{Q}(\beta)/\mathbb{Q}$.
+          \item La subextensión $\mathbb{Q}(\alpha)/\mathbb{Q}$ es de grado 4 ---ya que el polinomio irreducible de su generador es de grado 4--- y la subextensión $\mathbb{Q}(\beta)/\mathbb{Q}$, de grado 2 ---ya que el polinomio irreducible de su generador es de grado 2---.
+          \item Por lo anterior, podemos concluir que las subextensiones $E/\mathbb{Q}(\alpha)$ y $E/\mathbb{Q}(\beta)$ tienen grado 2 y 4, respectivamente.
+          \item Por los dos puntos anteriores, concluimos que $[E:\mathbb{Q}] = 8$.
+          \item Además, $E/\mathbb{Q}$ es de Galois, así que las subextensiones hasta los cuerpos intermedios también lo son. Por ser $\mathbb{Q}(\beta)/\mathbb{Q}$ de grado 2, sabemos que también es de Galois.
+      \end{itemize}
+
+      Resumimos todo esto en la figura \ref{retE}, donde se indica en cada línea si la extensión es de Galois ---con una G--- y qué orden tiene.
+
+      \begin{figure}[ht]
+          \centering
+          \begin{tikzpicture}[node distance=2cm]
+              \node(E)                                          {$E = \mathbb{Q}(\alpha,\beta)$};
+
+              \node(Qalpha) [below left=1cm and 0.5cm  of E]    {$\mathbb{Q}(\alpha)$};
+              \node(Qi)     [below right=1cm and 0.5cm of E]    {$\mathbb{Q}(\beta)$};
+
+              \node(Q)      [below=2.5cm of E]                  {$\mathbb{Q}$};
+
+              \draw(E)      -- (Qalpha) node [midway, fill=white] {\footnotesize G,2};
+              \draw(E)      -- (Qi)     node [midway, fill=white] {\footnotesize G,4};
+
+              \draw(Qalpha) -- (Q)      node [midway, fill=white] {\footnotesize 4};
+              \draw(Qi)     -- (Q)      node [midway, fill=white] {\footnotesize G,2};
+              \draw(E)      -- (Q)      node [midway, fill=white] {\footnotesize G,8};
+          \end{tikzpicture}
+          \caption{Lo que sabemos del retículo de subcuerpos de E.}
+          \label{retE}
+      \end{figure}
+
+      Además, toda esta información la podemos traducir directamente al retículo de subgrupos del grupo de Galois. No tenemos más que copiar el diagrama cambiando el sentido y, en los subgrupos correspondientes a extensiones de Galois, indicar que son subgrupos normales. En la figura \ref{retGalE} se resume esto, indicando con una N qué subgrupos son normales y el orden de estos.
+
+      \begin{figure}[ht]
+          \centering
+          \begin{tikzpicture}[node distance=2cm]
+              \node(GalEQ)                                          {$G = Gal(E/\mathbb{Q})$};
+
+              \node(GalEalpha)  [below left=1cm and 0.5cm  of E]    {$H = Gal(E/\mathbb{Q}(\alpha))$};
+              \node(GalEi)      [below right=1cm and 0.5cm of E]    {$N = Gal(E/\mathbb{Q}(\beta))$};
+
+              \node(uno)        [below=2.5cm of E]                  {$\{ 1 \}$};
+
+              \draw(GalEQ)      -- (GalEalpha) node [midway, fill=white] {\footnotesize 4};
+              \draw(GalEQ)      -- (GalEi)     node [midway, fill=white] {\footnotesize N,2};
+
+              \draw(GalEalpha) -- (uno)      node [midway, fill=white] {\footnotesize N,2};
+              \draw(GalEi)     -- (uno)      node [midway, fill=white] {\footnotesize N,4};
+          \end{tikzpicture}
+          \caption{Lo que sabemos del retículo de subgrupos de $Gal(E/\mathbb{Q})$.}
+          \label{retGalE}
+      \end{figure}
+
+      A partir de esta discusión sabemos lo siguiente:
+      \begin{itemize}
+          \item $N \trianglelefteq G$
+          \item $H \leq G$
+          \item $H \cap N = \{1\}$
+          \item $NH = G$
+      \end{itemize}
+
+      Por lo tanto, podemos concluir que $G = N \rtimes H$; es decir, el grupo de Galois que buscamos es un producto semidirecto.
+
+      El subgrupo $H = Gal(E/\mathbb{Q}(\alpha))$ es de orden 2, por lo que concluimos que:
+      \[
+      H = Gal(E/\mathbb{Q}(\alpha)) \cong C_2
+      \]
+
+      El subgrupo $N = Gal(E/\mathbb{Q}(\beta))$ es de orden 4, así que o bien es el cíclico de orden 4 o el grupo de Klein. Estudiemos sus elementos, que son los automorfismos de $E$ que dejan fijo a los elementos de $\mathbb{Q}(\beta)$; es decir, los automorfismos determinados por la imagen de $\alpha = \sqrt{1 + \sqrt{3}}$, que debe ir a parar a otra raíz del polinomio $p$.
+
+      Consideremos entonces el siguiente elemento de $N$:
+      \begin{align*}
+          \psi_1 : E &\longrightarrow E \\
+          \alpha &\longmapsto -\alpha
+      \end{align*}
+
+      Este elemento es claramente de orden 2, pues
+      \[
+      \psi_1^2(\alpha) = \psi_1(\psi_1(\alpha)) = \psi_1(-\alpha) = -\psi_1(\alpha) = \alpha
+      \]
+      Por tanto, $\psi_1^2 = id$.
+
+      Si encontramos otro elemento de orden 2 podemos concluir que $N$ es el grupo de Klein, ya que el cíclico sólo tiene un elemento de orden 2. Estudiamos entonces el siguiente elemento:
+      \begin{align*}
+          \psi_2 : E &\longrightarrow E \\
+          \alpha &\longmapsto \alpha_3 = \frac{\beta}{\alpha}
+      \end{align*}
+
+      Vemos ahora, con un poco más de trabajo pero en esencia con la misma técnica, que el cuadrado de este elemento es el automorfismo identidad:
+      \begin{align*}
+          \psi_2^2(\alpha) &= \psi_2(\psi_2(\alpha)) = \psi_2(\alpha_3) = \psi_2(\frac{\beta}{\alpha}) =\\
+          &= \frac{\psi_2(\beta)}{\psi_2(\alpha)} = \frac{\beta}{\alpha_3} = \frac{\beta}{\frac{\beta}{\alpha}} = \\
+          &= \alpha
+      \end{align*}
+
+      Concluimos entonces que el elemento $\psi_2 \in N$ es de orden 2 y que, por tanto, $N$ es K, el grupo de Klein.
+
+      Sabemos entonces que podemos expresar el grupo $G$ como $N \rtimes H$. Faltaría definir qué homomorfismo
+      \[
+      f : C_2 \longrightarrow Aut(K)
+      \]
+      tomamos para describir el grupo, pero un estudio rápido nos permite saber que da igual: los automorfismos del grupo de Klein son aquellos que mueven sus tres elementos no triviales; es decir, cada automorfismo del grupo de Klein es una permutación de tres elementos. Por tanto, $Aut(N) \cong S_3$. Además, sabemos que el homomorfismo $f$ está determinado por la imagen del único elemento no trivial de $C_2$ que, al ser de orden 2, tiene que ir a parar a un elemento de orden 2 de $S_3$. Pero como estudiamos en los ejercicios de la semana pasada, todos los elementos de orden 2 de $S_3$ son conjugados entre sí, así que no importa cuál tomemos como imagen.
+
+      De hecho, una búsqueda rápida en cualquier listado de grupos de orden pequeño nos permite saber que $D_{2\cdot4}$ el grupo diédrico de orden 8, puede definirse como el producto semidirecto que tenemos entre manos. Por tanto, concluimos que:
+      \[
+      Gal(\mathbb{Q}(\alpha,\beta)/\mathbb{Q}) = G = N \rtimes H = D_{2 \cdot 4}
+      \]
+
+      Sabemos que podemos escribir $D_{2\cdot4}$ con su presentación:
+      \[
+      D_{2\cdot4} = \langle a,b \;/\; a^4 = b^2 = 1, ba = a^{-1}b\rangle
+      \]
+      así que busquemos dos elementos de $G$, uno de orden 2 y otro de orden 4, que cumplan esa relación.
+
+      Un cálculo rápido nos permite comprobar que $\varphi_1$ es de orden 2 y $\varphi_6$ de orden 4. Además, cumplen la relación que buscamos:
+      \begin{align*}
+          \varphi_1(\varphi_6(\alpha)) = \varphi_1(\frac{\beta}{\alpha}) &= -\frac{\beta}{\alpha} \\
+          \varphi_6^{-1}(\varphi_1(\alpha)) = \varphi_6^3(-\alpha) &= -\frac{\beta}{\alpha} \\
+          \varphi_1(\varphi_6(\beta)) = \varphi_1(-\beta) &= -\beta \\
+          \varphi_6^{-1}(\varphi_1(\beta)) = \varphi_6^3(\beta) &= -\beta
+      \end{align*}
+
+      Concluimos entonces que:
+      \[
+      Gal(\mathbb{Q}(\alpha,\beta)/\mathbb{Q}) = \langle \varphi_6,\varphi_1 \;/\; \varphi_6^4 = \varphi_1^2 = 1, \varphi_1\varphi_6 = \varphi_6^{-1}\varphi_1\rangle
+      \]
+
+      Estudiar el retículo de subgrupos de $Gal(\mathbb{Q}(\alpha,\beta)/\mathbb{Q})$ es entonces estudiar el retículo de subgrupos de $D_{2\cdot4}$. Como el orden es 8, sólo puede haber subgrupos no triviales de orden 2 y 4.
+
+      Los subgrupos de orden 2 son fáciles de encontrar, ya que son todos isomorfos al cíclico de orden 2 y basta encontrar un elemento de orden 2 que sea su generador. Como los $\varphi_i$ con $i=1,2,3,4,5$ son de orden 2, tenemos los siguientes subgrupos:
+      \[
+      \langle\varphi_1\rangle \;\;\;\; \langle\varphi_2\rangle \;\;\;\; \langle\varphi_3\rangle \;\;\;\; \langle\varphi_4\rangle \;\;\;\; \langle\varphi_5\rangle
+      \]
+
+      Los subgrupos de orden 4 pueden ser de dos tipos: o cíclicos de orden 4 ---para los que basta encontrar un elemento de orden 4--- o subgrupos isomorfos al grupo de Klein. Como $\varphi_6$ y $\varphi_7$ son de orden 4, tenemos los siguientes subgrupos cíclicos:
+      \[
+      \langle\varphi_6\rangle \;\;\;\; \langle\varphi_7\rangle
+      \]
+
+      Pero puede ser que ambos sean iguales. Estudiando las diferentes potencias de estos elementos tenemos lo siguiente
+      \begin{align*}
+          \varphi_6^2 = \varphi_1; \;\;\; \varphi_6^3 = \varphi_7 \\
+          \varphi_7^2 = \varphi_1; \;\;\; \varphi_7^3 = \varphi_6
+      \end{align*}
+      Por tanto, sólo tenemos un subgrupo cíclico de orden 4 ---podemos tomar cualquiera de los dos como el \emph{representante} de este grupo---:
+      \[
+      \langle\varphi_6\rangle
+      \]
+
+      Para encontrar los subgrupos de orden 4 isomorfos al grupo de Klein hay que buscar dos elementos de orden 2 que conmuten. Hay que calcular manualmente todos los productos $\varphi_i\varphi_j$, donde $i,j=1,2,3,4,5$.
+
+      Los elementos que conmutan y el resultado de su producto se lista aquí:
+      \begin{align*}
+          \varphi_1\varphi_2 = \varphi_2\varphi_1 = \varphi_3 \\
+          \varphi_1\varphi_3 = \varphi_3\varphi_1 = \varphi_2 \\
+          \varphi_2\varphi_3 = \varphi_3\varphi_2 = \varphi_1 \\
+          \\
+          \varphi_1\varphi_4 = \varphi_4\varphi_1 = \varphi_5 \\
+          \varphi_1\varphi_5 = \varphi_5\varphi_1 = \varphi_4 \\
+          \varphi_4\varphi_5 = \varphi_5\varphi_4 = \varphi_1
+      \end{align*}
+
+      Todos los demás elementos de orden 2 no conmutan. Además, vemos que los elementos $\varphi_1$, $\varphi_2$ y $\varphi_3$ son conjugados entre sí, así como los elementos $\varphi_1$, $\varphi_4$ y $\varphi_5$. Esto es, tenemos dos conjuntos de elementos de orden 2 que conmutan entre sí y tales que, en cada conjunto, todos son conjugados. Cualesquiera dos elementos de cada conjunto determinan por tanto un único subgrupo isomorfo al grupo de Klein. Tomamos entonces una pareja \emph{representante} de cada conjunto para tener los dos grupos de Klein que salen:
+      \[
+      \langle\varphi_1,\varphi_2\rangle \;\;\;\; \langle\varphi_1, \varphi_4\rangle
+      \]
+
+      No hay más subgrupos no triviales, así que el retículo de subgrupos del grupo de Galois del polinomio $p$ queda como se muestra en la figura \ref{retFinal}.
+
+      \begin{figure}[ht!]
+          \centering
+          \begin{tikzpicture}
+              \node(G)                                          {$G = \{id,\varphi_1,\varphi_2,\varphi_3,\varphi_4,\varphi_5,\varphi_6,\varphi_7\}$};
+
+              \node(K1)     [below left=1cm and 0.2cm  of G]    {$\{id,\varphi_1,\varphi_2,\varphi_1\varphi_2=\varphi_3\}$};
+              \node(C4)     [below=1cm of G]                    {$\{id,\varphi_6,\varphi_6^2=\varphi_1,\varphi_6^3=\varphi_7\}$};
+              \node(K2)     [below right=1cm and 0.2cm of G]    {$\{id,\varphi_1,\varphi_4,\varphi_1\varphi_4=\varphi_5\}$};
+
+              \node(C2_1)   [below=1cm of C4]                   {$\{id,\varphi_1\}$};
+              \node(C2_2)   [below right=1cm and 0.2cm of K1]     {$\{id,\varphi_2\}$};
+              \node(C2_3)   [below=1cm of K1]                   {$\{id,\varphi_3\}$};
+              \node(C2_4)   [below left=1cm and 0.2cm of K2]      {$\{id,\varphi_4\}$};
+              \node(C2_5)   [below=1cm of K2]                   {$\{id,\varphi_5\}$};
+
+              \node(1)      [below=4.5cm of G]                  {$\{ id \}$};
+
+              \draw(G)  --  (K1);
+              \draw(G)  --  (C4);
+              \draw(G)  --  (K2);
+
+              \draw(K1) -- (C2_3);
+              \draw(K1) -- (C2_2);
+              \draw(K1) -- (C2_1);
+
+              \draw(C4) -- (C2_1);
+
+              \draw(K2) -- (C2_1);
+              \draw(K2) -- (C2_4);
+              \draw(K2) -- (C2_5);
+
+              \draw(1)  -- (C2_1);
+              \draw(1)  -- (C2_2);
+              \draw(1)  -- (C2_3);
+              \draw(1)  -- (C2_4);
+              \draw(1)  -- (C2_5);
+          \end{tikzpicture}
+          \caption{Expresión explícita del retículo de subgrupos de $Gal(E/\mathbb{Q})$.}
+          \label{retFinal}
+      \end{figure}
+
+      Para poder traducir la información que hemos obtenido del retículo de subgrupos del grupo de Galois al retículo de subcuerpos del cuerpo de descomposición del polinomio $p$ es necesario saber qué subcuerpos tiene asociado cada subgrupo.
+
+      Lo más sencillo para esto es computar el cuerpo que deja fijo cada subgrupo de automorfismos. La técnica es sencilla pero con una carga de cálculo importante:
+      \begin{enumerate}
+          \item Se toma $x \in E=\mathbb{Q}(\alpha,\beta)$ un elemento genérico del cuerpo.
+          \item Para cada automorfismo $\varphi_i \in Gal(E/\mathbb{Q})$, resolvemos la ecuación $\varphi_i(x) = x$.
+          \item La solución de la ecuación anterior nos da una base del cuerpo que deja fijo el subgrupo $\langle\varphi_i\rangle$.
+      \end{enumerate}
+
+      La implementación de este algoritmo se ha realizado en Maxima.
+
+      Para escribir el elemento genérico $x$ necesitamos una base del cuerpo E. En virtud del resultado que afirma que una base del cuerpo $K(\delta)$ es $\{1,\delta,\dots,\delta^{n-1}\}$, con $n$ el grado del polinomio $Irr(\delta,K)$, podemos tomar la siguiente base de E:
+      \[
+      \{1,\alpha,\alpha^2,\alpha^3,\beta,\beta\alpha,\beta\alpha^2,\beta\alpha^3\}
+      \]
+
+      Por tanto, cualquier elemento $x \in E$ se escribe como
+      \[
+      x = a_0 + a_1\alpha + a_2\alpha^2 + a_3\alpha^3 + a_4\beta + a_5\beta\alpha + a_6\beta\alpha^2 + a_7\beta\alpha^3
+      \]
+      con $a_i\in\mathbb{Q}$. La definición de este elemento en nuestro programa queda así:
+
+      \color{blue}
+      \begin{verbatim}
+basis:[alpha, alpha^2, alpha^3, beta, beta*alpha, beta*alpha^2, beta*alpha^3];
+a(i):=concat("a",i);
+x:a(0)+sum(a(i)*basis[i],i,1,7);
+      \end{verbatim}
+      \color{black}
+
+      En el programa tenemos además que definir los automorfismos $\varphi_i$, cuya naturaleza radica en su acción sobre los elementos $\alpha$ y $\beta$. Los definimos en Maxima como sigue:
+
+      \color{blue}
+      \begin{verbatim}
+phi[1](x):=sublis([alpha=-alpha, beta=beta],x);
+phi[2](x):=sublis([alpha=beta/alpha, beta=beta],x);
+phi[3](x):=sublis([alpha=-beta/alpha, beta=beta],x);
+phi[4](x):=sublis([alpha=alpha, beta=-beta],x);
+phi[5](x):=sublis([alpha=-alpha, beta=-beta],x);
+phi[6](x):=sublis([alpha=beta/alpha, beta=-beta],x);
+phi[7](x):=sublis([alpha=-beta/alpha, beta=-beta],x);
+      \end{verbatim}
+      \color{black}
+
+      Como no sabemos trabajar directamente con elementos de la forma $\beta/\alpha^i$, tenemos que obtener relaciones que nos permitan escribir esas fracciones en función únicamente de potencias de alpha y elementos racionales. Estas relaciones las podemos sacar fácilmente de los polinomios que cumplen cada uno de nuestros elementos, y son las siguientes:
+      \[
+          \beta^2=-2 \;\;\;\; \beta^3=-2\beta \;\;\;\; \beta^4=4
+      \]
+      \[
+          \frac{1}{\alpha}=\frac{1}{2}\alpha^3-\alpha \;\;\;\; \frac{1}{\alpha^2}=\frac{1}{2}\alpha^2-1 \;\;\;\; \frac{1}{\alpha^3}=\frac{3}{2}\alpha-\frac{1}{2}\alpha^3
+      \]
+
+      En la implementación de Maxima estas relaciones las definimos así:
+
+      \color{blue}
+      \begin{verbatim}
+relations:[beta^2=-2, beta^3=-2*beta, beta^4=4, 1/alpha=alpha^3/2-alpha,
+           1/alpha^2=alpha^2/2-1, 1/alpha^3=3*alpha/2-alpha^3/2];
+      \end{verbatim}
+      \color{black}
+
+      Ya sólo queda, para cada automorfismo, ver qué elementos deja fijos. Para esto necesitaremos las relaciones vistas anteriormente y un poco de trabajo minucioso para enfrentar cada caso. La idea es sencilla, y el código, aunque obscuro, es directo:
+
+      \color{blue}
+      \begin{verbatim}
+for i:1 thru 7 do(
+    img:phi[i](x),
+
+    /* Apply all known relations to simplify the expression */
+    img_subst:psubst(relations,img),
+
+    /* Expand by alpha to simplify the expression */
+    img_simp:expandwrt(img_subst, alpha),
+
+    /* Factor by the elements in the basis */
+    img[i]:collectterms(img_simp,alpha,alpha^2,alpha^3,beta,
+                        beta*alpha,beta*alpha^2,beta*alpha^3),
+
+    /* Impose phi[i](x) = x, coefficient (of the basis) by coefficient */
+    equations[i]:[],
+    equations[i]:append(equations[i],[
+                        psubst([alpha=0,beta=0],img[i])=
+                        psubst([alpha=0,beta=0],x)]),
+
+    for j:1 thru 3 do(
+        equations[i]:append(equations[i],[
+                        psubst(beta=0,ratcoeff(img[i],basis[j]))=
+                        psubst(beta=0,ratcoeff(x,basis[j]))])
+    ),
+    for j:4 thru 6 do(
+        equations[i]:append(equations[i],[
+                        psubst(alpha=0,ratcoeff(img[i],basis[j])=
+                        psubst(alpha=0,ratcoeff(x,basis[j])))])
+    ),
+
+    equations[i]:append(equations[i],[ratcoeff(img[i],basis[7])=
+                                      ratcoeff(x,basis[7])]),
+    solutions[i]:flatten(solve(equations[i],makelist(a(i),i,0,7))),
+
+    /* Retrieve the fixed elements given by the computed solutions */
+    if is(rhs(solutions[i][1]) = 0) then
+        fixed_elem[i]:0
+    else
+        fixed_elem[i]:lhs(solutions[i][1]),
+
+    for j:2 thru 8 do(
+        if is(rhs(solutions[i][j]) = 0) then
+            current_coeff:0
+        else
+            current_coeff:lhs(solutions[i][j]),
+
+        fixed_elem[i]:fixed_elem[i]+current_coeff*basis[j-1]
+    )
+)$
+      \end{verbatim}
+      \color{black}
+
+      La salida de este bucle nos da 7 expresiones de elementos, correspondientes a los elementos fijos por cada automorfismo. Es decir, tenemos la siguiente información:
+
+      \begin{align*}
+          \varphi_1(x) = x &\iff x=a_6\alpha^2\beta+a_4\beta+a_2\alpha^2+a_0 \\
+          \varphi_2(x) = x &\iff x=a_7\alpha^3\beta+a_5\alpha\beta+a_4\beta+a_3\alpha^3+a_1\alpha+a_0 \\
+          \varphi_3(x) = x &\iff x=a_7\alpha^3\beta+a_5\alpha\beta+a_4\beta+a_3\alpha^3+a_1\alpha+a_0 \\
+          \varphi_4(x) = x &\iff x=a_3\alpha^3+a_2\alpha^2+a_1\alpha+a_0 \\
+          \varphi_5(x) = x &\iff x=a_7\alpha^3\beta+a_5\alpha\beta+a_2\alpha^2+a_0 \\
+          \varphi_6(x) = x &\iff x=a_6\alpha^2\beta+a_4\beta+a_0 \\
+          \varphi_7(x) = x &\iff x=a_6\alpha^2\beta+a_4\beta+a_0
+      \end{align*}
+
+      De aquí podemos obtener los generadores de cada cuerpo fijo. Notamos $F^{\langle\varphi_i\rangle}$ al cuerpo de elementos fijos por el subgrupo generado por $\varphi_i$:
+      \begin{align*}
+          F^{\langle\varphi_1\rangle} &= \mathbb{Q}(\alpha^2,\beta) \\
+          F^{\langle\varphi_2\rangle} &= \mathbb{Q}(\alpha+\alpha^3,\beta) \\
+          F^{\langle\varphi_3\rangle} &= \mathbb{Q}(\alpha-\alpha^3,\beta) \\
+          F^{\langle\varphi_4\rangle} &= \mathbb{Q}(\alpha) \\
+          F^{\langle\varphi_5\rangle} &= \mathbb{Q}(\alpha^2,\beta(\alpha+\alpha^3)) \\
+          F^{\langle\varphi_6\rangle} &= \mathbb{Q}(\alpha^2\beta,\beta) \\
+          F^{\langle\varphi_7\rangle} &= \mathbb{Q}(\alpha^2\beta,\beta)
+      \end{align*}
+
+      A pesar de que el programa nos daba exactamente el mismo elemento para $\varphi_2$ y $\varphi_3$, ahora hemos escrito $F^{\langle\varphi_2\rangle} \neq F^{\langle\varphi_3\rangle}$. Esto merece una explicación:
+
+      Para simplificar la salida del programa, nos deshacemos de las variables arbitrarias que el sistema de cálculo introduce por nosotros. Esto lo hacemos con la estructura condicional
+      \color{blue}
+      \begin{verbatim}
+        if is(rhs(solutions[i][j]) = 0) then
+            current_coeff:0
+        else
+            current_coeff:lhs(solutions[i][j])
+      \end{verbatim}
+      \color{black}
+
+      Si en vez de usar la variable \texttt{current\_coeff} usamos siempre la solución de la ecuación para cada coeficiente, es decir, \texttt{rhs(solutions[i][j])}, obtenemos más información, ya que esa variable simplifica algo los resultados. En concreto, para $\varphi_2$ y $\varphi_3$ tenemos:
+      \color{blue}
+      \begin{align*}
+          r783\alpha^3\beta-((6r783-r784)\alpha\beta)/2+r786\beta+((2r783-r784)\alpha^3)/2+r784\alpha+r785 \\
+          r787\alpha^3\beta-((6r787+r788)\alpha\beta)/2+r790\beta-((2r787+r788)\alpha^3)/2+r788\alpha+r789
+      \end{align*}
+      \color{black}
+      donde los rXXX son variables aleatorias cuyo valor es indeterminado. En las dos líneas anteriores se ve por tanto el cambio de signo que hemos reflejado en la definición de los cuerpos fijos.
+
+      Una vez hecha la aclaración, vemos que podemos además deducir los cuerpos fijos de los dos subgrupos generados por dos elementos ---los isomorfos al grupo de Klein---:
+      \begin{align*}
+          F^{\langle\varphi_1,\varphi_2\rangle} &= \mathbb{Q}(\beta) \\
+          F^{\langle\varphi_1,\varphi_4\rangle} &= \mathbb{Q}(\alpha^2) \\
+      \end{align*}
+
+      Evidentemente, el cuerpo fijo por todos los automorfismos es el propio $\mathbb{Q}$:
+      \[
+      F^G = \mathbb{Q}
+      \]
+
+      Estamos ya en condiciones de dibujar el retículo de subcuerpos del cuerpo E, ya que no tenemos más que copiar la estructura del retículo del grupo de Galois e invertir el orden, sustituyendo cada subgrupo por su cuerpo fijo. La figura \ref{retCuerpo} termina por tanto este ejercicio:
+
+      \begin{figure}[ht!]
+          \centering
+          \begin{tikzpicture}
+              \node(G)                                          {$\mathbb{Q}$};
+
+              \node(K1)     [above left=1cm and 4.5cm  of G]    {$\mathbb{Q}(\beta)$};
+              \node(C4)     [above=1cm of G]                    {$\mathbb{Q}(\alpha^2\beta,\beta)$};
+              \node(K2)     [above right=1cm and 4.5cm of G]    {$\mathbb{Q}(\alpha^2)$};
+
+              \node(C2_1)   [above=1cm of C4]                   {$\mathbb{Q}(\alpha^2,\beta)$};
+              \node(C2_2)   [above right=1cm and 1cm of K1]     {$\mathbb{Q}(\alpha+\alpha^3,\beta)$};
+              \node(C2_3)   [above=1cm of K1]                   {$\mathbb{Q}(\alpha-\alpha^3,\beta)$};
+              \node(C2_4)   [above left=1cm and 1cm of K2]      {$\mathbb{Q}(\alpha)$};
+              \node(C2_5)   [above=1cm of K2]                   {$\mathbb{Q}(\alpha^2,\beta(\alpha+\alpha^3))$};
+
+              \node(1)      [above=4.5cm of G]                  {$E$};
+
+              \draw(G)  --  (K1);
+              \draw(G)  --  (C4);
+              \draw(G)  --  (K2);
+
+              \draw(K1) -- (C2_3);
+              \draw(K1) -- (C2_2);
+              \draw(K1) -- (C2_1);
+
+              \draw(C4) -- (C2_1);
+
+              \draw(K2) -- (C2_1);
+              \draw(K2) -- (C2_4);
+              \draw(K2) -- (C2_5);
+
+              \draw(1)  -- (C2_1);
+              \draw(1)  -- (C2_2);
+              \draw(1)  -- (C2_3);
+              \draw(1)  -- (C2_4);
+              \draw(1)  -- (C2_5);
+          \end{tikzpicture}
+          \caption{Expresión explícita del retículo de subcuerpos de $E$.}
+          \label{retCuerpo}
+      \end{figure}
+  \end{solucion}
+
+\end{document}
