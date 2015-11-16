@@ -421,10 +421,10 @@ for i:1 thru 7 do(
       De aquí podemos obtener los generadores de cada cuerpo fijo. Notamos $F^{\langle\varphi_i\rangle}$ al cuerpo de elementos fijos por el subgrupo generado por $\varphi_i$:
       \begin{align*}
           F^{\langle\varphi_1\rangle} &= \mathbb{Q}(\alpha^2,\beta) \\
-          F^{\langle\varphi_2\rangle} &= \mathbb{Q}(\alpha+\alpha^3,\beta) \\
-          F^{\langle\varphi_3\rangle} &= \mathbb{Q}(\alpha-\alpha^3,\beta) \\
+          F^{\langle\varphi_2\rangle} &= \mathbb{Q}(\alpha^3-\alpha,\beta) \\
+          F^{\langle\varphi_3\rangle} &= \mathbb{Q}(\alpha^3+\alpha,\beta) \\
           F^{\langle\varphi_4\rangle} &= \mathbb{Q}(\alpha) \\
-          F^{\langle\varphi_5\rangle} &= \mathbb{Q}(\alpha^2,\beta(\alpha+\alpha^3)) \\
+          F^{\langle\varphi_5\rangle} &= \mathbb{Q}(\alpha^2,\alpha\beta) \\
           F^{\langle\varphi_6\rangle} &= \mathbb{Q}(\alpha^2\beta,\beta) \\
           F^{\langle\varphi_7\rangle} &= \mathbb{Q}(\alpha^2\beta,\beta)
       \end{align*}
@@ -473,10 +473,10 @@ for i:1 thru 7 do(
               \node(K2)     [above right=1cm and 4.5cm of G]    {$\mathbb{Q}(\alpha^2)$};
 
               \node(C2_1)   [above=1cm of C4]                   {$\mathbb{Q}(\alpha^2,\beta)$};
-              \node(C2_2)   [above right=1cm and 1cm of K1]     {$\mathbb{Q}(\alpha+\alpha^3,\beta)$};
-              \node(C2_3)   [above=1cm of K1]                   {$\mathbb{Q}(\alpha-\alpha^3,\beta)$};
+              \node(C2_2)   [above right=1cm and 1cm of K1]     {$\mathbb{Q}(\alpha^3-\alpha,\beta)$};
+              \node(C2_3)   [above=1cm of K1]                   {$\mathbb{Q}(\alpha^3+\alpha,\beta)$};
               \node(C2_4)   [above left=1cm and 1cm of K2]      {$\mathbb{Q}(\alpha)$};
-              \node(C2_5)   [above=1cm of K2]                   {$\mathbb{Q}(\alpha^2,\beta(\alpha+\alpha^3))$};
+              \node(C2_5)   [above=1cm of K2]                   {$\mathbb{Q}(\alpha^2,\alpha\beta)$};
 
               \node(1)      [above=4.5cm of G]                  {$E$};
 
