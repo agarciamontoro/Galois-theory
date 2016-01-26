@@ -1,0 +1,53 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage[semana=8]{estilo}
+
+\begin{document}
+
+  \maketitle
+  \begin{ejercicio}
+      Sea \(K\) un cuerpo y sean \(u\) y \(v\) dos elementos tales que las extensiones \(K(u)\) y \(K(v)\) tienen grados coprimos \(m\) y \(n\), respectivamente. ¿Cuál es el grado de \([K(u,v):K]\)?
+  \end{ejercicio}
+
+  \begin{solucion}
+      Como tenemos la torre de cuerpos \(K \subset K(u) \subset K(u,v)\) ---ver figura \ref{subcuerpos}---, sabemos que
+      \[
+      [K(u,v):K]=[K(u,v):K(u)][K(u):K]=[K(u,v):K(u)]m
+      \]
+      luego \(m\mid[K(u,v):K]\).
+
+      Lo mismo podemos decir de \(K \subset K(v) \subset K(u,v)\), así que \(n\mid[K(u,v):K]\).
+
+      \begin{figure}[ht]
+          \centering
+          \begin{tikzpicture}[node distance=2cm]
+              \node(GalEQ)                                          {$K(u,v)$};
+
+              \node(GalEalpha)  [below left=1cm and 0.5cm  of GalEQ]    {$K(u)$};
+              \node(GalEi)      [below right=1cm and 0.5cm of GalEQ]    {$K(v)$};
+
+              \node(uno)        [below=2.5cm of GalEQ]                  {$K$};
+
+              \draw(GalEQ)      -- (GalEalpha);
+              \draw(GalEQ)      -- (GalEi);
+
+              \draw(GalEalpha) -- (uno);
+              \draw(GalEi)     -- (uno);
+          \end{tikzpicture}
+          \caption{Subcuerpos de $K(u,v)$.}
+          \label{subcuerpos}
+      \end{figure}
+
+      De los dos hechos anteriores y teniendo en cuenta que $m$ y $n$ son coprimos, podemos concluir que \(mn\mid[K(u,v):K]\).
+
+      Pero, además, sabemos que podemos acotar el grado que buscamos con el grado de las subextensiones de la siguiente manera:
+      \[
+      [K(u,v):K] \leq mn
+      \]
+
+      Es entonces evidente que
+      \[
+      [K(u,v):K]=mn
+      \]
+  \end{solucion}
+
+\end{document}

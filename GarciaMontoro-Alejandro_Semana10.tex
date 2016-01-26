@@ -1,0 +1,124 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage[semana=10]{estilo}
+
+\begin{document}
+
+  \maketitle
+  \begin{ejercicio}
+      Función totiente de Euler.
+  \end{ejercicio}
+
+  \begin{apartado}
+      Prueba que si $p = 2^k + 1$, con $k\in\mathbb{N}$, es un entero primo positivo, entonces $k$ es una potencia de dos. Estos números primos se llaman \bf{primos de Fermat}.
+  \end{apartado}
+
+  \begin{solucion}
+      Demostrémoslo por reducción al absurdo. Supongamos que $k$ no es una potencia de dos; es decir, $k$ tiene al menos un factor primo impar. Llamemos a tal factor, $s>2$.
+
+      Evidentemente, de aquí tenemos que $k = rs$, con $1 \leq r < k$.
+
+      En general sabemos que para cualesquiera $a,b\in\mathbb{R}$, y para cualquier $n\in\mathbb{N}-{0}$, se tiene que $(a-b) \vert (a^n - b^n)$.
+
+      Si tomamos $a = 2^r$, $b = -1$ y $n = s$, tenemos que $(2^r + 1) \vert (2^{rs} - (-1)^s)$. Como hemos tomado $s$ impar y $k = rs$, concluimos que:
+      \[
+      (2^r + 1) \vert (2^k + 1)
+      \]
+
+      Pero de aquí se deduce, puesto que $1 < 2^r + 1 < 2^k + 1$, que $2^k + 1$ no es primo, lo que cae en contradicción con las hipótesis del ejercicio.
+
+      Por tanto, $k$ es una potencia de dos.
+  \end{solucion}
+
+  \begin{apartado}
+      Prueba que $\varphi(n)$ es una potencia de 2 si, y sólo si, $n = 2^s p_1 \cdots p_t$, con $s\in\mathbb{N}$, y los $p_i$ primos de Fermat, distintos dos a dos.
+  \end{apartado}
+
+  \begin{solucion}
+      Sea $n = 2^s p_1^{e_1} p_2^{e_2} \cdots p_t^{e_t}$ la factorización en números primos de $n$, con $p_i$ números primos impares, $e_i \geq 1$ y $a \geq 0$. Por la fórmula de $\varphi$, tenemos que
+      \[
+      \varphi(n) = \begin{cases}
+          2^{s-1}(p_1 - 1)p_1^{e_1 - 1} (p_2 - 1)p_2^{e_2 - 1} \cdots (p_t - 1)p_t^{e_t - 1} & \textrm{ si } s \neq 0\\
+          \hspace{7.5mm}(p_1 - 1)p_1^{e_1 - 1} (p_2 - 1)p_2^{e_2 - 1} \cdots (p_t - 1)p_t^{e_t - 1} & \textrm{ si } s = 0
+      \end{cases}
+      \]
+
+      Empezamos entonces la demostración suponiendo que $\varphi(n) = 2^m$, con $m\in\mathbb{N}$. Si hubiera algún $e_i > 1$, por la fórmula antes vista tendríamos que $p_i \vert 2^m$. Esto no puede ser, porque $p_i$ es impar y $2^m$ no puede tener divisores impares. Por tanto, $e_i = 1$, $\forall i = 1, \dots, t$.
+
+      Por tanto, tenemos
+      \[
+      2^m = (p_i - 1) (p_2 - 1) \cdots (p_t - 1)
+      \]
+      de donde deducimos directamente que $p_i - 1 = 2^{r_i}$, con $r_i \geq 1$. Así, concluimos que
+      \[
+      p_i = 2^r_i + 1
+      \]
+      y que $n$ es de la forma que buscábamos.
+
+      Para probar la otra implicación, supongamos que $n = 2^s p_1 \cdots p_t$, con $p_i = 2^{2^{s_i}} + 1$. Por la fórmula de la función totiente, tenemos que
+      \[
+        \varphi(n) = \begin{cases}
+        2^{s-1} (p_i - 1) \cdots (p_t -1) = 2^{a-1} 2^{2^{s_1}} 2^{2^{s_2}} \cdots 2^{2^{s_t}} & \textrm{ si } s \neq 0\\
+        \hspace{7.5mm}(p_i - 1) \cdots (p_t -1) = \hspace{7.5mm}2^{2^{s_1}} 2^{2^{s_2}} \cdots 2^{2^{s_t}} & \textrm{ si } s = 0
+    \end{cases}
+      \]
+
+      En cualquiera de los casos $\varphi(n)$ es una potencia de 2, tal y como buscábamos.
+  \end{solucion}
+
+  \begin{ejercicio}
+      Para cada entero positivo primo llamamos $\mathcal{P}_{p,n}$ al número de polinomios mónicos irreducibles de grado $n$ sobre $\mathbb{F}_p$.
+  \end{ejercicio}
+
+  \begin{apartado}
+      Prueba que $p^m = \sum\limits_{j \vert m}j\mathcal{P}_{p,j}$.
+  \end{apartado}
+
+  \begin{solucion}
+      Llamemos $q = p^m$.
+      El cuerpo de descomposición de $X^q - X$ es $\mathbb{F}_q$. Cada irreducible $P_j(X)$ de grado $j$ descompone en $\mathbb{F}_q$ y cada elemento de $\mathbb{F}_q$ es una raíz de $X^q - X$. Es decir, tenemos que
+      \[
+      P(X) \vert X^q-X
+      \]
+
+      Además, $P_j(X)$ no tiene raíces múltiples, así que cada irreducible $P_j(X)$ tal que $j \vert m$ debe aparecer en la factorización una única vez. Por tanto, tenemos la siguiente descomposición:
+      \[
+      X^q - X = \prod_{j \vert m} P_j(X)
+      \]
+
+      Tomando grados, la igualdad que queríamos demostrar es clara:
+      \[
+      p^m = q = \sum\limits_{j \vert m}j\mathcal{P}_{p,j}
+      \]
+  \end{solucion}
+
+  \begin{apartado}
+      Si $m$ es primo, prueba que se tiene $\mathcal{P}_{p,m} = \frac{p^m - p}{m}$.
+  \end{apartado}
+
+  \begin{solucion}
+      Sabemos que $\mathbb{F}_{p^{m}}$ es el cuerpo de descomposición del polinomio $g\left(X\right)=X^{p^{m}}-X$ y que todo polinomio mónico irreducible de grado $m$ divide a $g$.
+
+      Por otro lado, como $\left|\mathbb{F}_{p^{m}}:\mathbb{F}_{p}\right|=m$, no puede haber subextensiones y, por tanto, todo polinomio irreducible que sea factor de g tiene que tener grado $m$ o 1.
+
+      Como cada polinomio lineal sobre $\mathbb{F}_{p}$ divide a $g$ ---dado que para cada $a\in \mathbb{F}_{p}$, $g(a) = 0$---, y teniendo en cuenta que $g$ tiene todas las raíces simples, concluimos que tenemos $p$ polinomios lineales diferentes que dividen a $g$.
+
+      Igual que antes, tomando grados, la suma de todos los polinomios mónicos irreducibles que dividen a $g$ nos da $p^{m}$.
+
+      Por tanto, tenemos la relación $m\mathcal{P}_{p,m} + p = p^{m}$. Despejando, obtenemos la fórmula buscada:
+      \[
+      \mathcal{P}_{p,m} = \frac{p^{m}-p}{m}
+      \]
+  \end{solucion}
+
+  \begin{apartado}
+      Determina el número de polinomios mónicos irreducibles de grado 3 sobre el cuerpo $\mathbb{F}_3$.
+  \end{apartado}
+
+  \begin{solucion}
+      Podemos usar la fórmula del apartado anterior, de manera que hay
+      \[
+      \mathcal{P}_{3,3} = \frac{3^3 - 3}{3} = 8
+      \]
+      polinomios mónicos irreducibles de grado 3 sobre el cuerpo $\mathbb{F}_3$.
+  \end{solucion}
+\end{document}

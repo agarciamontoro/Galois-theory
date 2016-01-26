@@ -1,0 +1,79 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage[semana=11]{estilo}
+
+\begin{document}
+
+  \maketitle
+
+  \begin{ejercicio}
+      Prueba que la extensión $\mathbb{Q}(\sqrt{2+\sqrt{2}})/\mathbb{Q}$ es cíclica de grado 4.
+  \end{ejercicio}
+
+  \begin{solucion}
+      Sea $\beta = \sqrt{2}$. Manipulando esta expresión, llegamos a lo siguiente:
+      \begin{align*}
+          \beta^2 &= 2 \\
+          \beta^2 - 2 &= 0
+      \end{align*}
+      de donde deducimos que $\beta$ es raíz del polinomio $P(X) = X^2 - 2 \in \mathbb{Q}[X]$.
+
+      Por el Teorema de Lagrange, sabemos que $\mathbb{Q}(\beta)/\mathbb{Q}$ es una extensión cíclica de grado 2.
+
+      Sea ahora $\beat = \sqrt{1+\beta}$. Manipulando de nuevo:
+      \begin{align*}
+          \alpha^2 &= 1 + \beta \\
+          \alpha^2 - (1 + \beta) &= 0 \\
+      \end{align*}
+      de donde deducimos que $\alpha$ es raíz del polinomio $Q(X) = X^2 - a \in \mathbb{Q}(\beta)[X]$, donde $a = 1 + \sqrt{2} \in \mathbb{Q}(\beta)$.
+
+      Por el Teorema de Lagrange, sabemos que $\mathbb{Q}(\alpha)/\mathbb{Q}(\beta)$ es una extensión cíclica de grado 2.
+
+      Concluimos entonces que $\mathbb{Q}(\alpha)/\mathbb{Q}$ tiene grado 4, aunque quedaría por demostrar si es cíclica o tiene al grupo de Klein como grupo de Galois.
+
+      En general, que una extensión tenga subextensiones cíclicas no implica que la extensión sea cíclica. Hagámoslo de otra manera entonces:
+
+      Reescribiendo la relación anterior tenemos:
+      \begin{align*}
+          \alpha^2 &= 1 + \beta \\
+          \alpha^2 - 1 &= \beta \\
+          \alpha^4 -2\alpha^2 + 1 &= 2 \\
+          \alpha^4 -2\alpha^2 - 1 &= 0 \\
+      \end{align*}
+      de donde deducimos que el polinomio irreducible ---se ve claramente por Eisenstein--- de $\alpha$ es $f(X) = X^4 - 2X^2 -1$.
+
+      Las cuatro raíces de este polinomio son $\pm\alpha$ y $\pm\sqrt{2-\sqrt{2}}$.
+
+      Si tomamos $\sigma$ un elemento de $Aut(\mathbb{Q}(\alpha)/\mathbb{Q})$ tal que $\sigma(\alpha) = \sqrt{2-\sqrt{2}}$, entonces $\sigma(\sqrt{2}) = -\sqrt{2}$, luego
+      \begin{align*}
+          \sigma(\sigma(\alpha)) &= \sigma(\sqrt{2-\sqrt{2}}) = \sigma\left(\frac{\sqrt{2}}{\alpha}\right) = \frac{\sigma(\sqrt{2})}{\sigma(\alpha)} = \frac{-\sqrt{2}}{\sqrt{2-\sqrt{2}}} = -\sqrt{2+\sqrt{2}}
+      \end{align*}
+
+      Es decir, el orden de $\sigma$ es mayor estricto que 2. Como este orden tiene que dividir al orden del grupo de Galois, que sabemos que es 4 por el estudio anterior, concluimos que el orden de $\sigma$ es exactamente 4.
+
+      De entre los dos posibles grupos que teníamos, esta condición nos deja una sola posibilidad: el grupo cíclico.
+
+      Por tanto, la extensión $\mathbb{Q}(\alpha)/\mathbb{Q}$ es cíclica de grado 4.
+
+  \end{solucion}
+
+  \begin{ejercicio}
+      Se considera la sucesión $\{\alpha_n\}_n$, definida:
+      \begin{align*}
+          \alpha_0 &= 0 \\
+          \alpha_{n+1} &=  \sqrt{\alpha_n+\sqrt{2}} &\forall n\in\mathbb{N}
+      \end{align*}
+
+      Prueba que la extensión $\mathbb{Q}(\alpha_n)/\mathbb{Q}$ es cíclica de grado $2^n$.
+  \end{ejercicio}
+
+  \begin{solucion}
+      Estudiamos $n = 1$:
+      \[
+      \alpha_1 = \sqrt{\alpha_0+\sqrt{2}} = \sqrt{\sqrt{2}} = \sqrt[4]{2}
+      \]
+
+      Como vemos, $\alpha_1 = \sqrt[4]{2}$; es decir, su polinomio irreducible ---de nuevo, por Eisenstein--- es $P(X) = X^4-2$.
+
+      Pero entonces la extensión $\mathbb{Q}(\alpha_1)/\mathbb{Q}$ es de grado 4. Por tanto, la afirmación dada en el enunciado es falsa.
+  \end{solucion}
+\end{document}
