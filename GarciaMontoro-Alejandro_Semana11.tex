@@ -19,7 +19,7 @@
 
       Por el Teorema de Lagrange, sabemos que $\mathbb{Q}(\beta)/\mathbb{Q}$ es una extensión cíclica de grado 2.
 
-      Sea ahora $\beat = \sqrt{1+\beta}$. Manipulando de nuevo:
+      Sea ahora $\beta = \sqrt{1+\beta}$. Manipulando de nuevo:
       \begin{align*}
           \alpha^2 &= 1 + \beta \\
           \alpha^2 - (1 + \beta) &= 0 \\
@@ -60,20 +60,78 @@
       Se considera la sucesión $\{\alpha_n\}_n$, definida:
       \begin{align*}
           \alpha_0 &= 0 \\
-          \alpha_{n+1} &=  \sqrt{\alpha_n+\sqrt{2}} &\forall n\in\mathbb{N}
+          \alpha_{n+1} &=  \sqrt{2+\alpha_n} &\forall n\in\mathbb{N}
       \end{align*}
 
       Prueba que la extensión $\mathbb{Q}(\alpha_n)/\mathbb{Q}$ es cíclica de grado $2^n$.
   \end{ejercicio}
 
   \begin{solucion}
-      Estudiamos $n = 1$:
+      Podemos probar por inducción que $\alpha_n = 2 Re(\xi_{2^{n+2}})$, donde $\xi_k$ es la raíz $k$-ésima de la unidad.
+
+      En efecto, $\alpha_0 = 0$ y $\xi_{2^2} = \xi_4 = i$, luego $2 Re(\xi_4) = 2\cdot0 = 0$ y, por tanto, $\alpha_0 = 2 Re(\xi_4)$.
+
+      Supuesto cierto para $n$, probémoslo para $n+1$. Es decir, queremos probar que
       \[
-      \alpha_1 = \sqrt{\alpha_0+\sqrt{2}} = \sqrt{\sqrt{2}} = \sqrt[4]{2}
+      \alpha_{n+1} = 2 Re(\xi_{2^{n+3}})
       \]
 
-      Como vemos, $\alpha_1 = \sqrt[4]{2}$; es decir, su polinomio irreducible ---de nuevo, por Eisenstein--- es $P(X) = X^4-2$.
+      dado que
+      \[
+      \alpha_n = 2 Re(\xi_{2^{n+2}})
+      \]
 
-      Pero entonces la extensión $\mathbb{Q}(\alpha_1)/\mathbb{Q}$ es de grado 4. Por tanto, la afirmación dada en el enunciado es falsa.
-  \end{solucion}
+      Pero esto es evidente, pues sabemos que $\xi_{2^n} = \xi_{2^{n+1}}^2$. En nuestro caso, para que salgan los índices que queremos, trabajaremos con la igualdad
+      \[
+      \xi_{2^{n+2}} = \xi_{2^{n+3}}^2
+      \]
+
+      Si llamamos $a+bi = \xi_{2^{n+2}}$ y $x+yi = \xi_{2^{n+3}}^2$, tenemos que
+      \[
+      a + bi = (x + yi)^2 = (x^2-y^2) + 2xyi
+      \]
+
+      De esta igualdad y del hecho de que las raíces de la unidad están en la circunferencia unidad, tenemos el siguiente sistema:
+      \begin{align*}
+          a &= x^2 - y^2 \\
+          1 &= x^2 + y^2
+      \end{align*}
+      de donde podemos obtener cuánto vale la parte real de $\xi_{2^{n+3}}^2$:
+      \[
+      a + 1 = 2x^2 \implies x = \sqrt{\frac{a+1}{2}}
+      \]
+
+      Como sabemos que $a = Re(\xi_{2^{n+2}}) = \frac{\alpha_n}{2}$, tenemos que
+      \[
+      x = \sqrt{\frac{\frac{\alpha_n}{2}+1}{2}} = \sqrt{\frac{\alpha_n + 2}{4}} = \frac{\sqrt{2+\alpha_n}}{2} = \frac{\alpha_{n+1}}{2}
+      \]
+
+      Es decir, tenemos que $\alpha_{n+1} = 2x = 2Re(\xi_{2^{n+3}})$, tal y como queríamos demostrar.
+
+      Una vez comprobada esta relación, podemos ver la relación de los cuerpos que se generan, y observamos la siguiente torre:
+      \[
+      \mathbb{Q} \subset \mathbb{Q}(\alpha_n) \subset \mathbb{Q}(\xi_{2^{n+2}}) = E
+      \]
+      donde $\mathbb{Q}(\alpha_n) = E \cap \mathbb{R}$ es el cuerpo fijo para la conjugación compleja.
+
+      Estudiando los grados, es claro lo siguiente:
+      \begin{itemize}
+          \item $[\mathbb{Q}(\xi_{2^{n+2}}):\mathbb{Q}(\alpha_n)] = 2$
+          \item $[\mathbb{Q}(\xi_{2^{n+2}}):\mathbb{Q}] = \varphi(2^{n+2}) = 2^{n+1}$
+      \end{itemize}
+
+      Por tanto, tenemos que la extensión que nosotros buscamos, $\mathbb{Q}(\alpha_n)/\mathbb{Q}$ tiene grado $\frac{2^{n+1}}{2} = 2^n$.
+
+      Por otro lado, sabemos que $Gal(\mathbb{Q}(\xi_{2^{n+2}})) = \mathbb{Z}_{2^{n+2}}^\times$, el grupo multiplicativo de los enteros módulo $2^{n+2}$.
+
+      Además, es conocido que $\mathbb{Z}_{2^{n+2}}^\times = C_2 \times C_{2^n}$, producto de grupos cíclicos.
+
+      Por tanto, para calcular el grupo de Galois de la extensión $\mathbb{Q}(\alpha_n)/\mathbb{Q}$, basta observar que es el cociente entre los grupos de Galois de las extensiones que acabamos de estudiar; es decir:
+
+      \[
+      Gal(\mathbb{Q}(\alpha_n)/\mathbb{Q}) =  \frac{Gal(\mathbb{Q}(\xi_{2^{n+2}})/\mathbb{Q})}{Gal(\mathbb{Q}(\xi_{2^{n+2}})/\mathbb{Q}(\alpha_n))} = \frac{C_2 \times C_{2^n}}{C_2} = C_{2^n}
+      \]
+
+      Concluimos así que la extensión $\mathbb{Q}(\alpha_n)/\mathbb{Q}$ es cíclica de grado $2^n$, tal y como queríamos demostrar.
+    \end{solucion}
 \end{document}
